@@ -59,11 +59,13 @@ In this section, we will guide you onboard the world of MiniBot in brief words.
 As a normal Bot user, the steps to get onboard are within a couple of minutes.
 
 1. Due to the kernel technology, make sure you are using a compatible Windows OS, including:
+
 * Windows 7 SP1 with latest patch (6.1.7600.24384 or higher)
 * Windows 8.1 with latest patch (6.3.9600.19678 or higher)
 * Windows 10 with latest patch (1809 or higher)
 
 2. Make sure your PC meets the minimum hardware requirement.
+
 * For Intel users, your CPU must be Core Ivy Bridge (3rd generation) or later.
 * For AMD users, your CPU must be Ryzen series.
 

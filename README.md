@@ -1,9 +1,9 @@
-# HOME
+# HOME of MINIBOT FOR WOW
 
 - [INTRODUCTION](#introduction-to-minibot-for-wow)
 - [GET STARTED](#get-started)
 
-# INTRODUCTION TO MINIBOT FOR WOW
+# INTRODUCTION
 
 **MiniBot for WoW** is an easy-to-use, advanced, one-stop and subscription-based platform for developing, releasing and running WoW bot projects. It brings lots of revolutionary features while you don’t need anything else to get all the bot magics to become true!
 

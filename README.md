@@ -1,4 +1,4 @@
-# HOME of MINIBOT FOR WOW
+# HOME
 
 - [INTRODUCTION](#introduction-to-minibot-for-wow)
 - [GET STARTED](#get-started)

@@ -1,6 +1,6 @@
 # HOME
 
-- [INTRODUCTION](#introduction-to-minibot-for-wow)
+- [INTRODUCTION](#introduction)
 - [GET STARTED](#get-started)
 
 # INTRODUCTION

@@ -1,0 +1,255 @@
+{
+  "value": [
+    {
+      "actions": [],
+      "value": [
+        -6229.76758,
+        367.0098,
+        386.2441
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6167.4375,
+        384.5786,
+        398.964142
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6132.26563,
+        383.309,
+        395.542328
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6128.05762,
+        378.355,
+        395.546082
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6121.077,
+        374.387482,
+        395.544281
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6109.36328,
+        377.183258,
+        395.542755
+      ]
+    },
+    {
+      "actions": [
+        {
+          "conditions": {
+            "type": "and",
+            "value": [
+              {
+                "operator": "=",
+                "value": false,
+                "variable": "merchant.is_open"
+              }
+            ]
+          },
+          "type": "interact",
+          "value": {
+            "id": 1104,
+            "range": 10
+          }
+        },
+        {
+          "conditions": {
+            "type": "and",
+            "value": [
+              {
+                "operator": "<",
+                "value": 5,
+                "variable": "action.duration"
+              }
+            ]
+          },
+          "type": "sell"
+        },
+        {
+          "conditions": {
+            "type": "and",
+            "value": [
+              {
+                "operator": "<",
+                "value": 2,
+                "variable": "action.duration"
+              }
+            ]
+          },
+          "type": "repair"
+        },
+        {
+          "conditions": {
+            "type": "and",
+            "value": []
+          },
+          "type": "close_merchant"
+        }
+      ],
+      "name": "sell_repair@1104",
+      "value": [
+        -6105.713,
+        383.7235,
+        395.542755
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6109.706,
+        390.7311,
+        395.542755
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6122.95166,
+        393.0032,
+        395.540955
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6128.531,
+        393.4005,
+        395.541351
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6132.16064,
+        385.7293,
+        395.5423
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6152.40771,
+        384.871735,
+        395.5423
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6169.95264,
+        381.804,
+        398.603638
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6184.02441,
+        375.0898,
+        395.5855
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6211.81934,
+        352.489532,
+        385.934937
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6225.079,
+        336.9635,
+        383.26828
+      ]
+    },
+    {
+      "actions": [
+        {
+          "conditions": {
+            "type": "and",
+            "value": [
+              {
+                "operator": "=",
+                "value": false,
+                "variable": "merchant.is_open"
+              }
+            ]
+          },
+          "type": "interact",
+          "value": {
+            "id": 829,
+            "range": 10
+          }
+        },
+        {
+          "conditions": {
+            "type": "and",
+            "value": [
+              {
+                "operator": "<",
+                "value": 5,
+                "variable": "action.duration"
+              }
+            ]
+          },
+          "type": "replenish"
+        },
+        {
+          "conditions": {
+            "type": "and",
+            "value": []
+          },
+          "type": "close_merchant"
+        }
+      ],
+      "name": "purchase_supplies@829",
+      "value": [
+        -6226.17725,
+        322.842346,
+        383.1269
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6229.906,
+        338.127,
+        383.232941
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6224.184,
+        351.1385,
+        383.951752
+      ]
+    },
+    {
+      "actions": [],
+      "value": [
+        -6224.16943,
+        363.582764,
+        386.0515
+      ]
+    }
+  ]
+}

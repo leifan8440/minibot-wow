@@ -1,0 +1,69 @@
+{
+  "path_groups": [
+    {
+      "name": "grind",
+      "next_groups": [
+        {
+          "conditions": {
+            "type": "or",
+            "value": [
+              {
+                "operator": "=",
+                "value": false,
+                "variable": "container.free_slots.is_enough"
+              },
+              {
+                "operator": "<",
+                "value": 10,
+                "variable": "inventory.durability"
+              }
+            ]
+          },
+          "name": "replenish",
+          "path": "grind-replenish"
+        }
+      ],
+      "rendezvous": {
+        "actions": [],
+        "value": [
+          -6282.703,
+          354.6995,
+          378.980377
+        ]
+      },
+      "start_distance": 20,
+      "value": [
+        "grind1",
+        "grind2"
+      ]
+    },
+    {
+      "name": "replenish",
+      "next_groups": [
+        {
+          "conditions": {
+            "type": "and",
+            "value": []
+          },
+          "name": "grind",
+          "path": "replenish-grind"
+        }
+      ],
+      "rendezvous": {
+        "actions": [],
+        "value": [
+          -6232.03174,
+          366.415161,
+          385.882538
+        ]
+      },
+      "start_distance": 20,
+      "value": [
+        "replenish"
+      ]
+    }
+  ],
+  "scripts": [
+    "rotation"
+  ]
+}

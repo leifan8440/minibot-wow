@@ -767,15 +767,15 @@ Before diving into the list, last but not least, we **DO NOT** provide intensive
 
 #### Common (Arguments)
 
-- path = GetAppStorageDirectory()
+- `path = GetAppStorageDirectory()`
 
 Gets the base directory path of app storage.
 
-- path = GetAppDirectory()
+- `path = GetAppDirectory()`
 
 Gets the app base directory path.
 
-- path = GetWoWDirectory()
+- `path = GetWoWDirectory()`
 
 Gets the WoW base directory path.
 
@@ -783,31 +783,31 @@ Gets the WoW base directory path.
 
 #### Common (File)
 
-- isOrNot = FileExists(path)
+- `isOrNot = FileExists(path)`
 
 Checks if a file exists.
 
-- text = ReadFile(path)
+- `text = ReadFile(path)`
 
 Reads all text from a file.
 
-- success = WriteFile(path, text[, append])
+- `success = WriteFile(path, text[, append])`
 
 Writes all text to a file.
 
-- isOrNot = DirectoryExists(path)
+- `isOrNot = DirectoryExists(path)`
 
 Checks if a directory exists.
 
-- success = CreateDirectory(path)
+- `success = CreateDirectory(path)`
 
 Creates a directory.
 
-- fileNames = GetDirectoryFiles(path)
+- `fileNames = GetDirectoryFiles(path)`
 
 Gets all file names in a specific directory.
 
-- folderNames = GetDirectoryFolders(path)
+- `folderNames = GetDirectoryFolders(path)`
 
 Gets all sub folder names in a specific directory.
 
@@ -815,7 +815,7 @@ Gets all sub folder names in a specific directory.
 
 #### Common (Maths)
 
-- centers = GetAllSpanningCircles(radius, minWeight, points)
+- `centers = GetAllSpanningCircles(radius, minWeight, points)`
 
 Gets all spanning circles of a specific radius over certain weighted points.
 
@@ -823,15 +823,15 @@ Gets all spanning circles of a specific radius over certain weighted points.
 
 #### Common (Miscellanea)
 
-- down, toggled = GetKeyState(key)
+- `down, toggled = GetKeyState(key)`
 
 Gets the pressed state of a specific key.
 
-- success = PlaySoundFile(path)
+- `success = PlaySoundFile(path)`
 
 Plays a specific sound WAV/MP3 file once.
 
-- SetCustomScript(name, script)
+- `SetCustomScript(name, script)`
 
 Add a custom script (indexed by name) that gets loaded side by side with the engine modules (Primary and Secondary). Notice that such script also gets loaded in GLUE screen.
 
@@ -839,7 +839,7 @@ Add a custom script (indexed by name) that gets loaded side by side with the eng
 
 #### In-World (State)
 
-- ResetAfk()
+- `ResetAfk()`
 
 Resets the timer for AFK.
 
@@ -847,19 +847,19 @@ Resets the timer for AFK.
 
 #### In-World (Action)
 
-- ClickPosition(x, y, z[, right])
+- `ClickPosition(x, y, z[, right])`
 
 Clicks a world position.
 
-- FaceDirection(angle[, update])
+- `FaceDirection(angle[, update])`
 
 Faces a horizontal direction, in radian.
 
-- SetPitch(angle)
+- `SetPitch(angle)`
 
 Sets the player vertical pitch, in radian.
 
-- MoveTo(x, y, z[, instantTurn])
+- `MoveTo(x, y, z[, instantTurn])`
 
 Moves the player to a specific position, using CTM.
 
@@ -867,11 +867,11 @@ Moves the player to a specific position, using CTM.
 
 #### In-World (Missile)
 
-- count = GetMissileCount()
+- `count = GetMissileCount()`
 
 Gets the count of the flying missiles.
 
-- spellId, spellVisualId, x, y, z, sourceObject, sourceX, sourceY, sourceZ, targetObject, targetX, targetY, targetZ = GetMissileWithIndex(index)
+- `spellId, spellVisualId, x, y, z, sourceObject, sourceX, sourceY, sourceZ, targetObject, targetX, targetY, targetZ = GetMissileWithIndex(index)`
 
 Gets the info of a specific missile.
 
@@ -879,19 +879,19 @@ Gets the info of a specific missile.
 
 #### In-World (Navigation)
 
-- success = LoadMap(mapId)
+- `success = LoadMap(mapId)`
 
 Loads a navigation map.
 
-- success = UnloadMap(mapId)
+- `success = UnloadMap(mapId)`
 
 Unloads a navigation map.
 
-- isOrNot = IsMapLoaded(mapId)
+- `isOrNot = IsMapLoaded(mapId)`
 
 Checks if a navigation map is loaded.
 
-- path = FindPath(mapId, x1, y1, z1, x2, y2, z2)
+- `path = FindPath(mapId, x1, y1, z1, x2, y2, z2)`
 
 Calculates a path to navigate from one position to another.
 
@@ -899,23 +899,23 @@ Calculates a path to navigate from one position to another.
 
 #### In-World (Object-Constants)
 
-- types = GetValueTypesTable()
+- `types = GetValueTypesTable()`
 
 Gets the table that contains all object descriptor value types.
 
-- flags = GetObjectTypeFlagsTable()
+- `flags = GetObjectTypeFlagsTable()`
 
 Gets the table that contains all type flags.
 
-- fields = GetObjectFieldsTable()
+- `fields = GetObjectFieldsTable()`
 
 Gets the table that contains all object field offsets.
 
-- descriptors = GetObjectDescriptorsTable()
+- `descriptors = GetObjectDescriptorsTable()`
 
 Gets the table that contains all object descriptor offsets.
 
-- movementFlags = GetUnitMovementFlagsTable()
+- `movementFlags = GetUnitMovementFlagsTable()`
 
 Gets the table that contains all unit movement flags.
 
@@ -923,43 +923,43 @@ Gets the table that contains all unit movement flags.
 
 #### In-World (Object-General)
 
-- object = GetObjectWithGUID(guid)
+- `object = GetObjectWithGUID(guid)`
 
 Gets the object by its GUID.
 
-- flags = ObjectTypeFlags(object)
+- `flags = ObjectTypeFlags(object)`
 
 Gets the type flags of an object.
 
-- isOrNot = ObjectIsType(object, type)
+- `isOrNot = ObjectIsType(object, type)`
 
 Checks if an object is of specific type.
 
-- isOrNot = ObjectExists(object)
+- `isOrNot = ObjectExists(object)`
 
 Checks whether an object exists in memory.
 
-- x, y, z = ObjectPosition(object)
+- `x, y, z = ObjectPosition(object)`
 
 Gets the world position of an object.
 
-- facing = ObjectFacing(object)
+- `facing = ObjectFacing(object)`
 
 Gets the horizontal rotation of an object, in radian.
 
-- distance = GetDistanceBetweenObjects(object1, object2)
+- `distance = GetDistanceBetweenObjects(object1, object2)`
 
 Gets the distance between two objects in 3D.
 
-- facing, pitch = GetAnglesBetweenObjects(object1, object2)
+- `facing, pitch = GetAnglesBetweenObjects(object1, object2)`
 
 Gets the angles (facing & pitch) between two objects.
 
-- isOrNot = ObjectIsFacing(object1, object2[, tolerance = PI/2])
+- `isOrNot = ObjectIsFacing(object1, object2[, tolerance = PI/2])`
 
 Checks if an object is facing another object.
 
-- isOrNot = ObjectIsBehind(object1, object2)
+- `isOrNot = ObjectIsBehind(object1, object2)`
 
 Checks if an object is behind another object.
 
@@ -967,35 +967,35 @@ Checks if an object is behind another object.
 
 #### In-World (Object-Descriptor)
 
-- value = ObjectDescriptor(object, offset, type)
+- `value = ObjectDescriptor(object, offset, type)`
 
 Gets a descriptor value of an object.
 
-- scale = ObjectScale(object)
+- `scale = ObjectScale(object)`
 
 Gets the scale of an object.
 
-- dynamicFlags = ObjectDynamicFlags(object)
+- `dynamicFlags = ObjectDynamicFlags(object)`
 
 Gets the dynamic flags of an object.
 
-- creator = UnitCreator(object)
+- `creator = UnitCreator(object)`
 
 Gets the creator object of an object.
 
-- radius = UnitBoundingRadius(object)
+- `radius = UnitBoundingRadius(object)`
 
 Gets the bounding radius of an unit.
 
-- reach = UnitCombatReach(object)
+- `reach = UnitCombatReach(object)`
 
 Gets the combat reach of an unit.
 
-- target = UnitTarget(object)
+- `target = UnitTarget(object)`
 
 Gets the target object of an unit.
 
-- flags = UnitFlags(object)
+- `flags = UnitFlags(object)`
 
 Gets the flags of an unit.
 
@@ -1003,27 +1003,27 @@ Gets the flags of an unit.
 
 #### In-World (Object-Field)
 
-- value = ObjectField(object, offset, type)
+- `value = ObjectField(object, offset, type)`
 
 Gets a field value of an object.
 
-- castingTarget = UnitCastingTarget(unit)
+- `castingTarget = UnitCastingTarget(unit)`
 
 Gets the casting target object of a unit.
 
-- transport = UnitTransport(unit)
+- `transport = UnitTransport(unit)`
 
 Gets the transport object of a unit.
 
-- pitch = UnitPitch(unit)
+- `pitch = UnitPitch(unit)`
 
 Gets the vertical pitch of a unit, in radian.
 
-- flags = UnitMovementFlags(unit)
+- `flags = UnitMovementFlags(unit)`
 
 Gets the movement flags of a unit, indicating its moving status.
 
-- value = UnitMovementField(unit, offset, type)
+- `value = UnitMovementField(unit, offset, type)`
 
 Gets the field value of a unit's movement struct.
 
@@ -1031,15 +1031,15 @@ Gets the field value of a unit's movement struct.
 
 #### In-World (Object-Miscellanea)
 
-- x, y, z = GetCorpsePosition()
+- `x, y, z = GetCorpsePosition()`
 
 Gets the position of the corpse.
 
-- lootable = UnitIsLootable(unit)
+- `lootable = UnitIsLootable(unit)`
 
 Gets whether a unit is lootable.
 
-- skinnable = UnitIsSkinnable(unit)
+- `skinnable = UnitIsSkinnable(unit)`
 
 Gets whether a unit is skinnable.
 
@@ -1047,51 +1047,51 @@ Gets whether a unit is skinnable.
 
 #### In-World (Object Manager)
 
-- count = GetObjectCount()
+- `count = GetObjectCount()`
 
 Gets the count of all world objects.
 
-- object = GetObjectWithIndex(index)
+- `object = GetObjectWithIndex(index)`
 
 Gets a specific world object by its index.
 
-- count = GetNpcCount([center | x, y, z][, range][, option])
+- `count = GetNpcCount([center | x, y, z][, range][, option])`
 
 Gets the count of specific NPCs.
 
-- npc = GetNpcWithIndex(index)
+- `npc = GetNpcWithIndex(index)`
 
 Gets a specific NPC by its index.
 
-- count = GetPlayerCount([center | x, y, z][, range][, option])
+- `count = GetPlayerCount([center | x, y, z][, range][, option])`
 
 Gets the count of specific players.
 
-- player = GetPlayerWithIndex(index)
+- `player = GetPlayerWithIndex(index)`
 
 Gets a specific player by its index.
 
-- count = GetGameObjectCount([center | x, y, z][, range][, option])
+- `count = GetGameObjectCount([center | x, y, z][, range][, option])`
 
 Gets the count of specific game objects.
 
-- gameObject = GetGameObjectWithIndex(index)
+- `gameObject = GetGameObjectWithIndex(index)`
 
 Gets a specific game object by its index.
 
-- count = GetDynamicObjectCount([center | x, y, z][, range][, option])
+- `count = GetDynamicObjectCount([center | x, y, z][, range][, option])`
 
 Gets the count of specific dynamic objects.
 
-- dynamicObject = GetDynamicObjectWithIndex(index)
+- `dynamicObject = GetDynamicObjectWithIndex(index)`
 
 Gets a specific dynamic object by its index.
 
-- count = GetAreaTriggerCount([center | x, y, z][, range][, option])
+- `count = GetAreaTriggerCount([center | x, y, z][, range][, option])`
 
 Gets the count of specific area triggers.
 
-- areaTrigger = GetAreaTriggerWithIndex(index)
+- `areaTrigger = GetAreaTriggerWithIndex(index)`
 
 Gets a specific area trigger by its index.
 
@@ -1099,11 +1099,11 @@ Gets a specific area trigger by its index.
 
 #### In-World (Spell)
 
-- isOrNot = IsAoEPending()
+- `isOrNot = IsAoEPending()`
 
 Checks if there is a pending spell on the cursor.
 
-- CancelPendingSpell()
+- `CancelPendingSpell()`
 
 Cancels the pending spell on the cursor.
 
@@ -1111,19 +1111,19 @@ Cancels the pending spell on the cursor.
 
 #### In-World (Vision)
 
-- x, y, z = TraceLine(x1, y1, z1, x2, y2, z2, flags)
+- `x, y, z = TraceLine(x1, y1, z1, x2, y2, z2, flags)`
 
 Checks ray cast intersection from position 1 to position 2.
 
-- x, y, z = GetCameraPosition()
+- `x, y, z = GetCameraPosition()`
 
 Gets the position of the camera.
 
-- isOnScreen, x, y = WorldToScreen(object | x, y, z)
+- `isOnScreen, x, y = WorldToScreen(object | x, y, z)`
 
 Projects a world position to the screen NDC position.
 
-- x, y, z[, object] = ScreenToWorld(x, y)
+- `x, y, z[, object] = ScreenToWorld(x, y)`
 
 Projects a screen NDC position to a world object or a terrain position.
 
@@ -1131,19 +1131,19 @@ Projects a screen NDC position to a world object or a terrain position.
 
 #### In-World (BlackTech)
 
-- success = SetCVarEx(name, value)
+- `success = SetCVarEx(name, value)`
 
 Sets a CVar without system limitation.
 
-- SetClimbAngle([angle])
+- `SetClimbAngle([angle])`
 
 Sets the engine allowed climb angle, in radian. If nil, restore original setting.
 
-- SetCameraDistanceMax([distance])
+- `SetCameraDistanceMax([distance])`
 
 Sets the current camera distance maximum. If nil, restore original setting.
 
-- SetNameplateDistanceMax([distance])
+- `SetNameplateDistanceMax([distance])`
 
 Sets the current nameplate visible distance maximum. If nil, restore original setting.
 

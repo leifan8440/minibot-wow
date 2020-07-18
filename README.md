@@ -1131,20 +1131,44 @@ Projects a screen NDC position to a world object or a terrain position.
 
 #### In-World (BlackTech)
 
-- `success = SetCVarEx(name, value)`
+- `SetCameraDistanceMax([distance])`
 
-Sets a CVar without system limitation.
+Sets the current camera distance maximum. If nil, restore original setting.
 
 - `SetClimbAngle([angle])`
 
 Sets the engine allowed climb angle, in radian. If nil, restore original setting.
 
-- `SetCameraDistanceMax([distance])`
+- `success = SetCVarEx(name, value)`
 
-Sets the current camera distance maximum. If nil, restore original setting.
+Sets a CVar without system limitation.
 
 - `SetNameplateDistanceMax([distance])`
 
 Sets the current nameplate visible distance maximum. If nil, restore original setting.
+
+- `StopFalling()`
+
+Stops the current falling of the character right now.
+
+- `EnableFlyingMode(enabled)`
+
+Enable/Disable flying mode of the character. (HINT: DO NOT enable flying while falling or you would get disconnected)
+
+- `isFlying = IsFlyingModeEnabled()`
+
+Gets whether flying mode is enabled for the character.
+
+- `modes = GetNoClipModes()`
+
+Gets the current no-clip mode flags, which is a sum of:
+0: none
+1: building
+2: static object
+4: dynamic object
+
+- `SetNoClipModes(modes)`
+
+Sets the current no-clip mode flags. Check the enum above.
 
 [Back to Top](#home)

@@ -115,7 +115,7 @@ As a normal Bot user, the steps to get onboard are within a couple of minutes.
 
 - Download the latest map pack (`MiniBot.Maps.zip`) in [Releases](https://github.com/pierre-picard/minibot-wow/releases/latest) and extract it into the main folder of **MiniBot** (`/maps` subfolder).
 
-- Start **MiniBot**, register a new user and login.
+- Start **MiniBot**, register a new user and login. (Notice your **MiniBot** user is bound to your HWID upon login, and you need to spend credits for a switch should you login from a different PC in future)
 
   <img src="images/gui-login.png" width="300" />
 

@@ -82,9 +82,9 @@ Though **MiniBot** is a paid platform, we are still OEM friendly (aka white labe
 
 Besides, as **MiniBot CLI** can launch in “silent mode”, you could also choose the hard but more customized way to do OEM by building your own software.
 
-## Affordable Subscription Price
+## Low Cost
 
-A fortified kernel with revolutionary framework comes at a very affordable price. Don’t forget that you only need to subscribe once in one place, and you get everything needed! We only sell monthly subscriptions at maximum, while short period trial subscriptions are also available **FOR FREE** (limited time for now). Moreover, the dual version support is included in one single subscription so you don’t need to pay extra for Retail and Classic versions separately!
+A fortified kernel with revolutionary framework only requires a small amount of donation for subscription. Don’t forget that you only need to subscribe once in one place, and you get everything needed! We only ask for monthly subscriptions at maximum. And if you are only casual users, the trials are also available **FOR FREE** (limited time for now). Moreover, the dual version support is included in one single subscription so you don’t have to subscribe extra to Retail and Classic versions separately!
 
 [Back to Top](#home)
 

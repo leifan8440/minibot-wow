@@ -879,6 +879,10 @@ Gets the info of a specific missile.
 
 #### In-World (Navigation)
 
+- `mapId, zoneId = GetCurrentMapInfo()`
+
+Gets the map information about the current location.
+
 - `success = LoadMap(mapId)`
 
 Loads a navigation map.

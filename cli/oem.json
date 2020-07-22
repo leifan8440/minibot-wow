@@ -2,9 +2,7 @@
 	"name": "test",
 	"shortName": "tst",
 	"themeColor": "0000ff",
-	"localization": "en-US",
+	"localization": "zh-CN",
 	"games": ["WoW.Retail", "WoW.Classic"],
-	"loginText": "login!",
-	"registerText": "register!",
-	"resetPasswordText": "reset password!",
+	"loginText": "login!"
 }

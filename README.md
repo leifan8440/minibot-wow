@@ -1039,13 +1039,17 @@ Gets the field value of a unit's movement struct.
 
 Gets the position of the corpse.
 
-- `lootable = UnitIsLootable(unit)`
+- `isOrNot = UnitIsLootable(unit)`
 
 Gets whether a unit is lootable.
 
-- `skinnable = UnitIsSkinnable(unit)`
+- `isOrNot = UnitIsSkinnable(unit)`
 
 Gets whether a unit is skinnable.
+
+- `isOrNot = UnitIsMounted(unit)`
+
+Gets whether a unit is mounted.
 
 [Back to Top](#home)
 

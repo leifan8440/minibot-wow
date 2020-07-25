@@ -143,6 +143,8 @@ If you wish to create your own MiniBot projects, the steps to get started are al
 
 - Download the latest `MiniBot Studio` (`MiniBot.Studio.zip`) in [Releases](https://github.com/pierre-picard/minibot-wow/releases/latest).
 
+- Make sure you have the latest version of .NET Framework installed. If not, download it from [Microsoft](https://dotnet.microsoft.com/download/dotnet-framework) website.
+
 - Start `MiniBot Studio` and choose a base folder (usually `MiniBot\scripts`) that stores your projects to develop. Each project will be a subfolder in it.
 
   <img src="images/studio-splash.png" width="500" />

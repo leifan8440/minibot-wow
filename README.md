@@ -131,7 +131,7 @@ As a normal Bot user, the steps to get onboard are within a couple of minutes.
 
   <img src="images/gui-launch.png" width="300" />
 
-- If everything goes right, you should see the in-game **MiniBot** panel popped up. Choose the current project that you wish to run and click `Start` button. Remember to follow the other instructions of the project developer and happy botting!
+- If everything goes right, you should see the in-game **MiniBot** panel. Choose the current project that you wish to run and click `Start` button. Remember to follow the other instructions of the project developer and happy botting!
 
   <img src="images/game-panel.png" width="300" />
   
@@ -1180,5 +1180,14 @@ Gets the current no-clip mode flags, which is a sum of:
 - `SetNoClipModes(modes)`
 
 Sets the current no-clip mode flags. Check the enum above.
+
+### Framework-independent MiniBot Project
+
+MiniBot also allows you to create "framework-independent" projects which can be loaded by MiniBot directly without the AddOn framework. Such projects work like a pure WoW AddOn, except that:
+
+1. The project is loaded in both Login screen and World.
+2. The project is able to be encrypted by `MiniBot CLI`, to take the advantage of source code protection and authorization controls.
+
+You need to manually create and edit all source code files in the project folder, including a different syntax of "project.json" as the Lua manifest file along with the Lua files to be loaded. A sample project is given [here](https://github.com/pierre-picard/minibot-wow/tree/master/examples/custom-addon).
 
 [Back to Top](#home)

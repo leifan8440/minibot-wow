@@ -37,6 +37,7 @@
     - [UNLOCK PROTECTED WOW API](#unlock-protected-wow-api)
     - [UNIVERSAL OBJECT ID](#universal-object-id)
     - [CUSTOM API](#custom-api)
+    - [FRAMEWORK-INDEPENDENT PROJECT](#framework-independent-project)
 -----------------------------
 
 # INTRODUCTION
@@ -1181,7 +1182,7 @@ Gets the current no-clip mode flags, which is a sum of:
 
 Sets the current no-clip mode flags. Check the enum above.
 
-### Framework-independent MiniBot Project
+### Framework-independent Project
 
 MiniBot also allows you to create "framework-independent" projects which can be loaded by MiniBot directly without the AddOn framework. Such projects work like a pure WoW AddOn, except that:
 

@@ -850,15 +850,15 @@ Sends a HTTP request asynchronously. The API will return immediately after the r
 -- The request info.
 info = {
   -- string: The request URL.
-  Url: "https://www.microsoft.com/",
+  Url = "https://www.microsoft.com/",
   -- string: The request method, can be "GET", "POST", "PUT" or "DELETE".
-  Method: "POST",
+  Method = "POST",
   -- string: The additional request headers.
-  Headers: "Content-Type: application/json\r\nX-Custom: test",
+  Headers = "Content-Type: application/json\r\nX-Custom: test",
   -- string: The request body, only used Method is "POST" or "PUT".
-  Body: "{\"test\": 123}",
+  Body = "{\"test\": 123}",
   -- string: The pinned HTTPs server certificate as a protection for packet sniffing. If provided, the server certificate must match it or the HTTP request would fail with status "INVALID_CERTIFICATE".
-  Certificate: "PINNED CERTIFICATE"
+  Certificate = "PINNED CERTIFICATE"
 }
 -- The HTTP request ID if sent successfully, for querying HTTP response later.
 request = "abc123"

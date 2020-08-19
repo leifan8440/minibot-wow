@@ -840,6 +840,59 @@ Add a custom script (indexed by name) that gets loaded side by side with the eng
 
 [Back to Top](#home)
 
+### Common (Network)
+
+- `request = SendHttpRequest(info)`
+
+Sends a HTTP request asynchronously. The API will return immediately after the request is sent without waiting for the response.
+
+```lua
+-- The request info.
+info = {
+  -- string: The request URL.
+  Url: "https://www.microsoft.com/",
+  -- string: The request method, can be "GET", "POST", "PUT" or "DELETE".
+  Method: "POST",
+  -- string: The additional request headers.
+  Headers: "Content-Type: application/json\r\nX-Custom: test",
+  -- string: The request body, only used Method is "POST" or "PUT".
+  Body: "{\"test\": 123}",
+  -- string: The pinned HTTPs server certificate as a protection for packet sniffing. If provided, the server certificate must match it or the HTTP request would fail with status "INVALID_CERTIFICATE".
+  Certificate: "PINNED CERTIFICATE"
+}
+-- The HTTP request ID if sent successfully, for querying HTTP response later.
+request = "abc123"
+```
+
+- `status[, response] = ReceiveHttpResponse(request)`
+
+Checks the status and receives the response of an existing HTTP request. The request will be cleared from memory after the API call if the request is done successfully or unsuccessfully.
+
+```lua
+-- The HTTP request ID previously sent.
+request = "abc123"
+-- The current status of the HTTP request, can be:
+-- "REQUESTING": The request is still on the way.
+-- "REQUEST_FAILED": The request is terminated due to failures.
+-- "INVALID_CERTIFICATE": The request is terminated due to invalid HTTPs certificate.
+-- "RESPONDING": Downloading response after the request is sent.
+-- "RESPONSE_HEADERS_FAILED": The response download is terminated while fetching response headers.
+-- "RESPONSE_BODY_FAILED": The response download is terminated while fetching response body.
+-- "SUCCESS": The response is received and everything about the HTTP request is done.
+status = "CONNECTING"
+-- The response data, available if status is "SUCCESS"
+response = {
+  -- number: The HTTP response status code.
+  Code = 200,
+  -- string: The HTTP response headers.
+  Headers = "HTTP/1.1 200 OK...",
+  -- string: The HTTP response body.
+  Body = "...",
+  -- string: The actual server certificate if the request is HTTPs, which can be used for pinning.
+  Certificate = "SERVER CERTIFICATE",
+}
+```
+
 #### In-World (State)
 
 - `ResetAfk()`

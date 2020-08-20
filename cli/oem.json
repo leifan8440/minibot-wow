@@ -1,0 +1,8 @@
+{
+	"name": "test",
+	"shortName": "tst",
+	"themeColor": "0000ff",
+	"localization": "zh-CN",
+	"games": ["WoW.Retail", "WoW.Classic"],
+	"loginText": "login!"
+}

@@ -782,6 +782,21 @@ Gets the app base directory path.
 
 Gets the WoW base directory path.
 
+- `value = GetSystemVar(name)`
+
+Gets the value of the system variable previously set by `SetSystemVar`. **nil** if it does not exist.
+
+- `value = SetSystemVar(name, value)`
+
+Sets a system variable.
+
+The standard Lua environment gets reset after screen switch including **/reload**. All Lua variables get lost because of this. In this way, we provide "System Variables" that allow you to persist information across different screens in the current game session. This is similar as the game "Console Variable", consisting of a name-value pair.
+
+```lua
+-- name (string): The name of the system variable.
+-- value (string): The value of the system variable.
+```
+
 [Back to Top](#home)
 
 #### Common (File)

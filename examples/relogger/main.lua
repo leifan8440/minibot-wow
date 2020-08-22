@@ -24,7 +24,7 @@ local is_launcher_login_cancelled;
 local login_start_time;
 
 -- The relogger "rotation" for retail.
-local function retail_rotation()
+local function rotation()
     -- If there is a total failure, show it and terminate.
     if (failure) then
         if (not is_failure_shown) then
@@ -164,11 +164,4 @@ end
 
 -- Start the "relogger" rotation.
 local rotation_frame = CreateFrame("FRAME");
-rotation_frame:SetScript("OnUpdate", function()
-    local versionType, buildType, version, internalVersion, date = GetBuildInfo();
-    if (tonumber(string.sub(version, 1, 1)) > 1) then
-        retail_rotation();
-    else
-        message("Relogger: Classic support is not done yet!");
-    end
-end);
+rotation_frame:SetScript("OnUpdate", rotation);

@@ -1257,6 +1257,6 @@ MiniBot also allows you to create "framework-independent" projects which can be 
 1. The project is loaded in both Login screen and World.
 2. The project is able to be encrypted by `MiniBot CLI`, to take the advantage of source code protection and authorization controls.
 
-You need to manually create and edit all source code files in the project folder, including a different syntax of "project.json" as the Lua manifest file along with the Lua files to be loaded. A sample project is given [here](https://github.com/pierre-picard/minibot-wow/tree/master/examples/custom-addon).
+You need to manually create and edit all source code files in the project folder, including a different syntax of "project.json" as the Lua manifest file along with the Lua files to be loaded. A simple relogger project is given [here](https://github.com/pierre-picard/minibot-wow/tree/master/examples/relogger) as an example.
 
 [Back to Top](#home)

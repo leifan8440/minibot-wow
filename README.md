@@ -140,7 +140,7 @@ As a normal Bot user, the steps to get onboard are within a couple of minutes.
 
 ## Start as a Project Developer
 
-If you wish to create your own MiniBot projects, the steps to get started are also only a few as below.
+If you wish to use MiniBot AddOn Framework to develop a project, which is "code-free", follow the next steps. Otherwise, if you come with your own pure Lua scripts/AddOns, you can skip over to [BUILD YOUR OWN FRAMEWORK &amp; ADDON](#build-your-own-framework--addon).
 
 - Download the latest `MiniBot Studio` (`MiniBot.Studio.zip`) in [Releases](https://github.com/pierre-picard/minibot-wow/releases/latest).
 

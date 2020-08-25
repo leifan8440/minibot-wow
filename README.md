@@ -930,7 +930,7 @@ http_frame:SetScript("OnUpdate", function()
       print("response body:", http_response.Body);
     end
   end
-end)
+end);
 ```
 
 #### In-World (State)

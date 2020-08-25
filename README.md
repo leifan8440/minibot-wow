@@ -908,6 +908,31 @@ response = {
 }
 ```
 
+Given the nature of async programming model, a simple example to send and receive HTTP is given as below, leveraging frame updates.
+
+```lua
+local http_frame = CreateFrame("FRAME");
+local http_request;
+http_frame:SetScript("OnUpdate", function()
+  if (not http_request) then
+    local info = {...}; -- Fill your actual info here.
+    http_request = wmbapi.SendHttpRequest(info);
+  else
+    local http_status, http_response = wmbapi.ReceiveHttpResponse(http_request)
+    if (not http_status) then
+      -- The HTTP request has been fulfiled.
+      http_frame:SetScript("OnUpdate", nil);
+      http_frame = nil;
+      return;
+    end
+    -- Deal with the current status and response of the HTTP request here.
+    if (http_status == "SUCCESS") then
+      print("response body:", http_response.Body);
+    end
+  end
+end)
+```
+
 #### In-World (State)
 
 - `ResetAfk()`

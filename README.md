@@ -866,14 +866,16 @@ Sends a HTTP request asynchronously. The API will return immediately after the r
 info = {
   -- string: The request URL.
   Url = "https://www.microsoft.com/",
-  -- string: The request method, can be "GET", "POST", "PUT" or "DELETE".
+  -- [OPTIONAL] string: The request method, can be "GET", "POST", "PUT" or "DELETE".
   Method = "POST",
-  -- string: The additional request headers.
+  -- [OPTIONAL] string: The additional request headers.
   Headers = "Content-Type: application/json\r\nX-Custom: test",
-  -- string: The request body, only used Method is "POST" or "PUT".
+  -- [OPTIONAL] string: The request body, only used Method is "POST" or "PUT".
   Body = "{\"test\": 123}",
-  -- string: The pinned HTTPs server certificate as a protection for packet sniffing. If provided, the server certificate must match it or the HTTP request would fail with status "INVALID_CERTIFICATE".
-  Certificate = "PINNED CERTIFICATE"
+  -- [OPTIONAL] string: The pinned HTTPs server certificate as a protection for packet sniffing. If provided, the server certificate must match it or the HTTP request would fail with status "INVALID_CERTIFICATE".
+  Certificate = "PINNED CERTIFICATE",
+  -- [OPTIONAL] function: The callback function when the status of the request is updated.
+  Callback = function(request, status) ... end,
 }
 -- The HTTP request ID if sent successfully, for querying HTTP response later.
 request = "abc123"
@@ -909,6 +911,22 @@ response = {
 ```
 
 Given the nature of async programming model, a simple example to send and receive HTTP is given as below, leveraging frame updates.
+
+```lua
+wmbapi.SendHttpRequest({
+  Url = "https://www.microsoft.com",
+  ...
+  Callback = function(request, status)
+    -- Deal with the current status and response of the HTTP request here.
+    if (status == "SUCCESS") then
+      local _, response = wmbapi.ReceiveHttpResponse(request);
+      print("response body:", response.Body);
+    end
+  end
+});
+```
+
+Another example to send and receive HTTP is given as below, leveraging frame updates.
 
 ```lua
 local http_frame = CreateFrame("FRAME");
@@ -1159,7 +1177,7 @@ Gets the count of all world objects.
 
 Gets a specific world object by its index.
 
-- `count = GetNpcCount([center | x, y, z][, range][, option])`
+- `count = GetNpcCount([center | x, y, z][, range][, rangeOption])`
 
 Gets the count of specific NPCs.
 
@@ -1167,15 +1185,24 @@ Gets the count of specific NPCs.
 
 Gets a specific NPC by its index.
 
-- `count = GetPlayerCount([center | x, y, z][, range][, option])`
+- `count = GetPlayerCount([center | x, y, z][, range][, rangeOption])`
 
 Gets the count of specific players.
+
+```lua
+-- rangeOption can optionally specify the meaning of range, which is one of the several values below.
+direct = 0; -- raw distance between myself and the unit
+target_reach_only = 1; -- consider only the unit reach on top of the range
+both_reaches = 2; -- consider both reaches of myself and the unit on top of the range
+both_melee_reaches = 3; -- consider the unit as a melee target on top of the range
+both_melee_reaches_with_movement = 4; -- consider the unit as a moving melee target on top of the range
+```
 
 - `player = GetPlayerWithIndex(index)`
 
 Gets a specific player by its index.
 
-- `count = GetGameObjectCount([center | x, y, z][, range][, option])`
+- `count = GetGameObjectCount([center | x, y, z][, range])`
 
 Gets the count of specific game objects.
 
@@ -1183,7 +1210,7 @@ Gets the count of specific game objects.
 
 Gets a specific game object by its index.
 
-- `count = GetDynamicObjectCount([center | x, y, z][, range][, option])`
+- `count = GetDynamicObjectCount([center | x, y, z][, range])`
 
 Gets the count of specific dynamic objects.
 
@@ -1191,7 +1218,7 @@ Gets the count of specific dynamic objects.
 
 Gets a specific dynamic object by its index.
 
-- `count = GetAreaTriggerCount([center | x, y, z][, range][, option])`
+- `count = GetAreaTriggerCount([center | x, y, z][, range])`
 
 Gets the count of specific area triggers.
 

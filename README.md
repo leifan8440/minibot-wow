@@ -910,7 +910,7 @@ response = {
 }
 ```
 
-Given the nature of async programming model, a simple example to send and receive HTTP is given as below, leveraging frame updates.
+Given the nature of async programming model, a simple example to send and receive HTTP is given as below, leveraging the callback function.
 
 ```lua
 wmbapi.SendHttpRequest({

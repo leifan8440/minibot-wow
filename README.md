@@ -764,6 +764,8 @@ Here is the [list](https://wow.gamepedia.com/Category:API_functions/Protected) o
 
 The up-to-date custom API of MiniBot for WoW is maintained [here](API.md).
 
+[Back to Top](#home)
+
 ### Framework-independent Project
 
 MiniBot also allows you to create "framework-independent" projects which can be loaded by MiniBot directly without the AddOn framework. Such projects work like a pure WoW AddOn, except that:

@@ -15,10 +15,10 @@
   - [State](#in-world-state)
   - Object
     - [Constants](#in-world-object-constants)
-    - [Descriptor](#in-world-object-constants)
-    - [Field](#in-world-object-constants)
+    - [Descriptor](#in-world-object-descriptor)
+    - [Field](#in-world-object-field)
     - [General](#in-world-object-general)
-    - [Miscellanea](#in-world-object-constants)
+    - [Miscellanea](#in-world-object-miscellanea)
   - [Object Manager](#in-world-object-manager)
   - [Vision](#in-world-vision)
 

@@ -1,5 +1,27 @@
 # Custom API
 
+- Common
+  - [Arguments](#common-arguments)
+  - [File](#common-file)
+  - [Maths](#common-maths)
+  - [Miscellanea](#common-miscellanea)
+  - [Network](#common-network)
+- In-World
+  - [Action](#in-world-action)
+  - [BlackTech](#in-world-blacktech)
+  - [Missile](#in-world-missile)
+  - [Navigation](#in-world-navigation)
+  - [Spell](#in-world-spell)
+  - [State](#in-world-state)
+  - Object
+    - [Constants](#in-world-object-constants)
+    - [Descriptor](#in-world-object-constants)
+    - [Field](#in-world-object-constants)
+    - [General](#in-world-object-general)
+    - [Miscellanea](#in-world-object-constants)
+  - [Object Manager](#in-world-object-manager)
+  - [Vision](#in-world-vision)
+
 This is the up-to-date list of `MiniBot` custom API, classified into 3 categories according to their lifecycles:
 
 1. Common<br />
@@ -13,9 +35,9 @@ All of the custom API below are registered in a specific global table `wmbapi` i
 
 Before diving into the list, last but not least, we **DO NOT** provide intensive support for the API set. Questions such as "hey, what does API XXX mean?" will be ignored. Please help yourself if you decide to utilize them for your own good.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  Common (Arguments)
+## Common (Arguments)
 
 - `path = GetAppStorageDirectory()`
 
@@ -44,9 +66,9 @@ The standard Lua environment gets reset after screen switch including **/reload*
 -- value (string): The value of the system variable.
 ```
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  Common (File)
+## Common (File)
 
 - `isOrNot = FileExists(path)`
 
@@ -76,17 +98,17 @@ Gets all file names in a specific directory. Remind the path must end with wildc
 
 Gets all sub folder names in a specific directory.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  Common (Maths)
+## Common (Maths)
 
 - `centers = GetAllSpanningCircles(radius, minWeight, points)`
 
 Gets all spanning circles of a specific radius over certain weighted points.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  Common (Miscellanea)
+## Common (Miscellanea)
 
 - `down, toggled = GetKeyState(key)`
 
@@ -100,9 +122,9 @@ Plays a specific sound WAV/MP3 file once.
 
 Add a custom script (indexed by name) that gets loaded side by side with the engine modules (Primary and Secondary). Notice that such script also gets loaded in GLUE screen.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  Common (Network)
+## Common (Network)
 
 - `request = SendHttpRequest(info)`
 
@@ -255,15 +277,7 @@ wmbapi.ConnectWebsocket({
 });
 ```
 
-##  In-World (State)
-
-- `ResetAfk()`
-
-Resets the timer for AFK.
-
-[Back to Top](#home)
-
-##  In-World (Action)
+## In-World (Action)
 
 - `ClickPosition(x, y, z[, right])`
 
@@ -281,9 +295,53 @@ Sets the player vertical pitch, in radian.
 
 Moves the player to a specific position, using CTM.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  In-World (Missile)
+## In-World (BlackTech)
+
+- `SetCameraDistanceMax([distance])`
+
+Sets the current camera distance maximum. If nil, restore original setting.
+
+- `SetClimbAngle([angle])`
+
+Sets the engine allowed climb angle, in radian. If nil, restore original setting.
+
+- `success = SetCVarEx(name, value)`
+
+Sets a CVar without system limitation.
+
+- `SetNameplateDistanceMax([distance])`
+
+Sets the current nameplate visible distance maximum. If nil, restore original setting.
+
+- `StopFalling()`
+
+Stops the current falling of the character right now.
+
+- `EnableFlyingMode(enabled)`
+
+Enable/Disable flying mode of the character. (HINT: DO NOT enable flying while falling or you would get disconnected)
+
+- `isFlying = IsFlyingModeEnabled()`
+
+Gets whether flying mode is enabled for the character.
+
+- `modes = GetNoClipModes()`
+
+Gets the current no-clip mode flags, which is a sum of:
+0: none
+1: building
+2: static object
+4: dynamic object
+
+- `SetNoClipModes(modes)`
+
+Sets the current no-clip mode flags. Check the enum above.
+
+[Back to Top](#custom-api)
+
+## In-World (Missile)
 
 - `count = GetMissileCount()`
 
@@ -293,9 +351,9 @@ Gets the count of the flying missiles.
 
 Gets the info of a specific missile.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  In-World (Navigation)
+## In-World (Navigation)
 
 - `mapId, zoneId = GetCurrentMapInfo()`
 
@@ -317,9 +375,9 @@ Checks if a navigation map is loaded.
 
 Calculates a path to navigate from one position to another.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  In-World (Object-Constants)
+## In-World (Object-Constants)
 
 - `types = GetValueTypesTable()`
 
@@ -341,9 +399,73 @@ Gets the table that contains all object descriptor offsets.
 
 Gets the table that contains all unit movement flags.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  In-World (Object-General)
+## In-World (Object-Descriptor)
+
+- `value = ObjectDescriptor(object, offset, type)`
+
+Gets a descriptor value of an object.
+
+- `scale = ObjectScale(object)`
+
+Gets the scale of an object.
+
+- `dynamicFlags = ObjectDynamicFlags(object)`
+
+Gets the dynamic flags of an object.
+
+- `creator = UnitCreator(object)`
+
+Gets the creator object of an object.
+
+- `radius = UnitBoundingRadius(object)`
+
+Gets the bounding radius of an unit.
+
+- `reach = UnitCombatReach(object)`
+
+Gets the combat reach of an unit.
+
+- `target = UnitTarget(object)`
+
+Gets the target object of an unit.
+
+- `flags = UnitFlags(object)`
+
+Gets the flags of an unit.
+
+[Back to Top](#custom-api)
+
+## In-World (Object-Field)
+
+- `value = ObjectField(object, offset, type)`
+
+Gets a field value of an object.
+
+- `castingTarget = UnitCastingTarget(unit)`
+
+Gets the casting target object of a unit.
+
+- `transport = UnitTransport(unit)`
+
+Gets the transport object of a unit.
+
+- `pitch = UnitPitch(unit)`
+
+Gets the vertical pitch of a unit, in radian.
+
+- `flags = UnitMovementFlags(unit)`
+
+Gets the movement flags of a unit, indicating its moving status.
+
+- `value = UnitMovementField(unit, offset, type)`
+
+Gets the field value of a unit's movement struct.
+
+[Back to Top](#custom-api)
+
+## In-World (Object-General)
 
 - `object = GetObjectWithGUID(guid)`
 
@@ -385,73 +507,9 @@ Checks if an object is facing another object.
 
 Checks if an object is behind another object.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  In-World (Object-Descriptor)
-
-- `value = ObjectDescriptor(object, offset, type)`
-
-Gets a descriptor value of an object.
-
-- `scale = ObjectScale(object)`
-
-Gets the scale of an object.
-
-- `dynamicFlags = ObjectDynamicFlags(object)`
-
-Gets the dynamic flags of an object.
-
-- `creator = UnitCreator(object)`
-
-Gets the creator object of an object.
-
-- `radius = UnitBoundingRadius(object)`
-
-Gets the bounding radius of an unit.
-
-- `reach = UnitCombatReach(object)`
-
-Gets the combat reach of an unit.
-
-- `target = UnitTarget(object)`
-
-Gets the target object of an unit.
-
-- `flags = UnitFlags(object)`
-
-Gets the flags of an unit.
-
-[Back to Top](#home)
-
-##  In-World (Object-Field)
-
-- `value = ObjectField(object, offset, type)`
-
-Gets a field value of an object.
-
-- `castingTarget = UnitCastingTarget(unit)`
-
-Gets the casting target object of a unit.
-
-- `transport = UnitTransport(unit)`
-
-Gets the transport object of a unit.
-
-- `pitch = UnitPitch(unit)`
-
-Gets the vertical pitch of a unit, in radian.
-
-- `flags = UnitMovementFlags(unit)`
-
-Gets the movement flags of a unit, indicating its moving status.
-
-- `value = UnitMovementField(unit, offset, type)`
-
-Gets the field value of a unit's movement struct.
-
-[Back to Top](#home)
-
-##  In-World (Object-Miscellanea)
+## In-World (Object-Miscellanea)
 
 - `x, y, z = GetCorpsePosition()`
 
@@ -469,9 +527,9 @@ Gets whether a unit is skinnable.
 
 Gets whether a unit is mounted.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  In-World (Object Manager)
+## In-World (Object Manager)
 
 - `count = GetObjectCount()`
 
@@ -530,9 +588,9 @@ Gets the count of specific area triggers.
 
 Gets a specific area trigger by its index.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  In-World (Spell)
+## In-World (Spell)
 
 - `isOrNot = IsAoEPending()`
 
@@ -542,9 +600,17 @@ Checks if there is a pending spell on the cursor.
 
 Cancels the pending spell on the cursor.
 
-[Back to Top](#home)
+[Back to Top](#custom-api)
 
-##  In-World (Vision)
+## In-World (State)
+
+- `ResetAfk()`
+
+Resets the timer for AFK.
+
+[Back to Top](#custom-api)
+
+## In-World (Vision)
 
 - `x, y, z = TraceLine(x1, y1, z1, x2, y2, z2, flags)`
 
@@ -562,46 +628,4 @@ Projects a world position to the screen NDC position.
 
 Projects a screen NDC position to a world object or a terrain position.
 
-[Back to Top](#home)
-
-##  In-World (BlackTech)
-
-- `SetCameraDistanceMax([distance])`
-
-Sets the current camera distance maximum. If nil, restore original setting.
-
-- `SetClimbAngle([angle])`
-
-Sets the engine allowed climb angle, in radian. If nil, restore original setting.
-
-- `success = SetCVarEx(name, value)`
-
-Sets a CVar without system limitation.
-
-- `SetNameplateDistanceMax([distance])`
-
-Sets the current nameplate visible distance maximum. If nil, restore original setting.
-
-- `StopFalling()`
-
-Stops the current falling of the character right now.
-
-- `EnableFlyingMode(enabled)`
-
-Enable/Disable flying mode of the character. (HINT: DO NOT enable flying while falling or you would get disconnected)
-
-- `isFlying = IsFlyingModeEnabled()`
-
-Gets whether flying mode is enabled for the character.
-
-- `modes = GetNoClipModes()`
-
-Gets the current no-clip mode flags, which is a sum of:
-0: none
-1: building
-2: static object
-4: dynamic object
-
-- `SetNoClipModes(modes)`
-
-Sets the current no-clip mode flags. Check the enum above.
+[Back to Top](#custom-api)

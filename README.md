@@ -951,6 +951,63 @@ http_frame:SetScript("OnUpdate", function()
 end);
 ```
 
+- `connection = ConnectWebsocket(info)`
+
+Connects to a remote websocket server asynchronously. The API will return immediately after the connection is initiated.
+
+```lua
+-- The websocket info.
+info = {
+  -- string: The websocket URL. (Use http(s) instead of ws(s))
+  Url = "https://echo.websocket.org",
+  -- [OPTIONAL] string: The additional request headers.
+  Headers = "Content-Type: application/json\r\nX-Custom: test",
+  -- [OPTIONAL] string: The pinned HTTPs server certificate as a protection for packet sniffing. If provided, the server certificate must match it or the websocket connection would fail with status "INVALID_CERTIFICATE".
+  Certificate = "PINNED CERTIFICATE",
+  -- [OPTIONAL] function: The callback function when the status of the connection is updated, which can be any one of "CONNECTING", "CONNECTION_FAILED", "INVALID_CERTIFICATE", "CONNECTED", "CLOSING", "CLOSED".
+  ConnectCallback = function(connection, status) ... end,
+  -- [OPTIONAL] function: The callback function when a piece of data is sent over the connection. (Only string data is supported)
+  SendCallback = function(connection, data) ... end,
+  -- [OPTIONAL] function: The callback function when a piece of data is received over the connection. (Only string data is supported)
+  ReceiveCallback = function(connection, data) ... end
+}
+-- The websocket connection ID if sent successfully.
+connection = "abc123"
+```
+
+- `success = CloseWebsocket(connection)`
+
+Closes an existing websocket connection.
+
+- `success = SendWebsocketData(connection, data)`
+
+Sends a piece of string data over an existing websocket connection.
+
+Given the nature of async programming model, a simple example to establish a websocket connection, send data, and disconnect it after data is received is given as below.
+
+```lua
+wmbapi.ConnectWebsocket({
+  Url = "https://echo.websocket.org",
+  ...
+  ConnectCallback = function(connection, status)
+    -- Deal with the current connection status here.
+    if (status == "CONNECTED") then
+      print("connected!");
+      wmbapi.SendWebsocketData(connection, "test data!");
+    elseif (status == "CLOSED") then
+      print("disconnected!");
+    end
+  end,
+  SendCallback = function(connection, data)
+    print("data sent:", data);
+  end,
+  ReceiveCallback = function(connection, data)
+    print("data received:", data);
+    wmbapi.CloseWebsocket(connection);
+  end
+});
+```
+
 #### In-World (State)
 
 - `ResetAfk()`
@@ -1189,6 +1246,10 @@ Gets a specific NPC by its index.
 
 Gets the count of specific players.
 
+- `player = GetPlayerWithIndex(index)`
+
+Gets a specific player by its index.
+
 ```lua
 -- rangeOption can optionally specify the meaning of range, which is one of the several values below.
 direct = 0; -- raw distance between myself and the unit
@@ -1197,10 +1258,6 @@ both_reaches = 2; -- consider both reaches of myself and the unit on top of the 
 both_melee_reaches = 3; -- consider the unit as a melee target on top of the range
 both_melee_reaches_with_movement = 4; -- consider the unit as a moving melee target on top of the range
 ```
-
-- `player = GetPlayerWithIndex(index)`
-
-Gets a specific player by its index.
 
 - `count = GetGameObjectCount([center | x, y, z][, range])`
 

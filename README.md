@@ -824,7 +824,7 @@ Creates a directory.
 
 - `fileNames = GetDirectoryFiles(path)`
 
-Gets all file names in a specific directory.
+Gets all file names in a specific directory. Remind the path must end with wildcards. e.g. ```C:\Windows\*.lua```
 
 - `folderNames = GetDirectoryFolders(path)`
 

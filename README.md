@@ -22,6 +22,7 @@
     - [CONDITION and VARIABLE](#condition-and-variable)
     - [CUSTOM SCRIPT](#custom-script)
     - [NAVIGATION STATES](#navigation-states)
+    - [FRAMEWORK VOCABULARY](https://docs.google.com/spreadsheets/d/1dzurAMgAs0RuRevQZHptpJVQYJFBKb9_gyHsLMS-Wuw)
   - [YOUR FIRST SIMPLE GRIND PROJECT](#your-first-simple-grind-project)
     - [START MINIBOT STUDIO](#start-minibot-studio)
     - [CREATE NEW PROJECT](#create-new-project)

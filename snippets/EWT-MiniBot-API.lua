@@ -401,7 +401,6 @@ LoadScript = nil
 GetScriptName = nil
 AddLuaString = nil
 RemoveLuaString = nil
-RunString = nil
 RegisterLuaFunction = nil
 AddPacketCallback = nil
 RemovePacketCallback = nil
@@ -412,14 +411,12 @@ SetSessionVariable = nil
 SaveSessionConfig = nil
 IsForeground = nil
 GetAsyncKeyState = nil
-GetOffset = nil
 GetDescriptor = nil
 CreateTimer = nil
 StopTimer = nil
 SendKey = nil
 MoveMouse = nil
 SendClick = nil
-ReadMemory = nil
 GetModuleAddress = nil
 GetWoWProcess = nil
 PatchAddress = nil
@@ -474,6 +471,22 @@ info = {
 }
 -- The websocket connection ID if sent successfully.
 connection = "abc123"
+
+value = ReadMemory(module, offset, type)
+--Reads a value at a specific memory offset/rva in a specific memory module.
+-- module (string): The name of the memory module. nil for "Wow.exe" aka the main module.
+-- offset (number): The offset/rva in the memory module to read.
+-- type (number): The type of the value. Check GetValueTypesTable().
+-- value (number): The result value. nil if the memory address is not found.
+
+offset = GetMemoryOffset(module, address)
+--Gets the offset of a memory address in a specific module.
+-- module (string): The name of the memory module. nil for "Wow.exe" aka the main module.
+-- address (number): The absolute memory address.
+-- offset (number): The result offset. nil if the memory address is not found.
+
+RunScript(name, script)
+--Runs a Lua script with a name by engine.
 
 
 --New API

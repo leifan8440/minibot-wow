@@ -2,147 +2,7 @@
 if not wmbapi then -- Use wmbapi variable to detect whether MiniBot's API is fully loaded
 	return
 end
-StopFalling = wmbapi.StopFalling
-FaceDirection = wmbapi.FaceDirection
-ObjectTypeFlags = wmbapi.ObjectTypeFlags
-GetObjectWithPointer = function(...)
-	if not UnitIsVisible(...) then
-		return
-	end
-	local pointer = nil
-	for i=1,wmbapi.GetObjectCount() do
-		pointer = wmbapi.GetObjectWithIndex(i)
-		if UnitIsVisible(pointer) and UnitIsUnit(pointer,...) then
-			return pointer
-		end	
-	end
-end
-ObjectExists = wmbapi.ObjectExists
-ObjectIsVisible = UnitIsVisible
-ObjectPosition = wmbapi.ObjectPosition
-ObjectFacing = wmbapi.ObjectFacing
-ObjectName = UnitName
-ObjectID = function(...) return ... and tonumber(string.match(UnitGUID(...), "-(%d+)-%x+$"), 10) end
-ObjectIsUnit = function(...) return ... and ObjectIsType(...,ObjectTypes.Unit) end
-ObjectIsPlayer = function(...) return ... and ObjectIsType(...,ObjectTypes.Player) end
-ObjectIsGameObject = function(...) return ... and ObjectIsType(...,ObjectTypes.GameObject) end
-ObjectIsAreaTrigger = function(...) return ... and ObjectIsType(...,ObjectTypes.AreaTrigger) end
-GetDistanceBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2) return math.sqrt(math.pow(X2 - X1, 2) + math.pow(Y2 - Y1, 2) + math.pow(Z2 - Z1, 2)) end
-GetDistanceBetweenObjects = wmbapi.GetDistanceBetweenObjects
-GetPositionBetweenObjects = function(obj1,obj2,dist) 
-	local X1,Y1,Z1 = ObjectPosition(obj1)
-	local X2,Y2,Z2 = ObjectPosition(obj2)
-	local AngleXY, AngleXYZ = math.atan2(Y2 - Y1, X2 - X1) % (math.pi * 2), math.atan((Z1 - Z2) / math.sqrt(math.pow(X1 - X2, 2) + math.pow(Y1 - Y2, 2))) % math.pi
-	return math.cos(AngleXY) * dist + X1, math.sin(AngleXY) * dist + Y1, math.sin(AngleXYZ) * dist + Z1
-end
-GetPositionFromPosition = function(X, Y, Z, dist, angle) return math.cos(angle) * dist + X, math.sin(angle) * dist + Y, math.sin(0) * dist + Z end
-GetAnglesBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2) return math.atan2(Y2 - Y1, X2 - X1) % (math.pi * 2), math.atan((Z1 - Z2) / math.sqrt(math.pow(X1 - X2, 2) + math.pow(Y1 - Y2, 2))) % math.pi end
-GetPositionBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2, DistanceFromPosition1) local AngleXY, AngleXYZ = GetAnglesBetweenPositions(X1, Y1, Z1, X2, Y2, Z2) return GetPositionFromPosition(X1, Y1, Z1, DistanceFromPosition1, AngleXY, AngleXYZ) end
-ObjectIsFacing = wmbapi.ObjectIsFacing
-ObjectInteract = InteractUnit
-GetObjectCount = wmbapi.GetObjectCount
-GetObjectWithIndex = wmbapi.GetObjectWithIndex
-GetObjectWithGUID = wmbapi.GetObjectWithGUID
-UnitBoundingRadius = wmbapi.UnitBoundingRadius
-UnitCombatReach = wmbapi.UnitCombatReach
-UnitTarget = wmbapi.UnitTarget
-UnitCastID = function(...) return select(7,GetSpellInfo(UnitCastingInfo(...))), select(7,GetSpellInfo(UnitChannelInfo(...))), wmbapi.UnitCastingTarget, wmbapi.UnitCastingTarget end
-TraceLine = wmbapi.TraceLine
-GetCameraPosition = wmbapi.GetCameraPosition
-CancelPendingSpell = wmbapi.CancelPendingSpell
-ClickPosition = wmbapi.ClickPosition
-IsAoEPending = wmbapi.IsAoEPending
-GetTargetingSpell = function()
-	while true do
-		local spellName,_,_,_,_,_,spellID = GetSpellInfo(i,"spell")
-		if not spellName then
-			break
-		elseif IsCurrentSpell(i,"spell") then
-			return spellID
-		end
-	end
-end
-WorldToScreen = wmbapi.WorldToScreen
-ScreenToWorld = wmbapi.ScreenToWorld
-GetDirectoryFiles = wmbapi.GetDirectoryFiles
-ReadFile = wmbapi.ReadFile
-WriteFile = wmbapi.WriteFile
-CreateDirectory = wmbapi.CreateDirectory
-GetSubdirectories = wmbapi.GetDirectoryFolders
-GetWoWDirectory = wmbapi.GetWoWDirectory
-GetHackDirectory = wmbapi.GetAppDirectory
-AddEventCallback = function(Event, Callback)
-	if not MiniBotFrames then
-		MiniBotFrames = CreateFrame("Frame")
-		MiniBotFrames:SetScript("OnEvent",MiniBotFrames_OnEvent)
-	end
-	MiniBotFrames:RegisterEvent(Event)
-end
-AddFrameCallback = function(...)
-	if not MiniBotFrames then
-		MiniBotFrames = CreateFrame("Frame")
-	end
-	MiniBotFrames:SetScript("OnUpdate",...)
-end
-SendHTTPRequest = wmbapi.SendHttpRequest
-GetKeyState = wmbapi.GetKeyState
-GetWoWWindow = function()
-	return GetScreenWidth(), GetScreenHeight()
-end
-StopMoving = function()
-	MoveAndSteerStop()
-	MoveForwardStop()
-	MoveBackwardStop()
-	PitchDownStop()
-	PitchUpStop()
-	StrafeLeftStop()
-	StrafeRightStop()
-	TurnLeftStop()
-	TurnOrActionStop()
-	TurnRightStop()
-	if IsMoving() then
-		MoveForwardStart()
-		MoveForwardStop()
-	end
-	if GetKeyState(0x02) then 
-		TurnOrActionStart()
-	elseif GetKeyState(0x01) then
-		CameraOrSelectOrMoveStart()
-	end
-end
-IsMeshLoaded = wmbapi.IsMapLoaded
-CalculatePath = wmbapi.FindPath
-SetMaximumClimbAngle = wmbapi.SetClimbAngle
-GetMapId = wmbapi.GetCurrentMapInfo
-ObjectGUID = UnitGUID
-ObjectEntryID = UnitGUID
-ObjectIsType = wmbapi.ObjectIsType
-GetAnglesBetweenObjects = wmbapi.GetAnglesBetweenObjects
-ObjectIsBehind = wmbapi.ObjectIsBehind
-ObjectDescriptor = wmbapi.ObjectDescriptor
-ObjectTypeFlags = wmbapi.ObjectTypeFlags
-ObjectField = wmbapi.ObjectField
-GetActivePlayer = function() return "player" end
-UnitIsFacing = ObjectIsFacing
-UnitIsFalling(...) = function(...) return ... and UnitMovementFlags(...) == wmbapi.GetUnitMovementFlagsTable().Falling end
-UnitMovementFlags = wmbapi.UnitMovementFlags
-UnitBoundingRadius = wmbapi.UnitBoundingRadius
-UnitCombatReach = wmbapi.UnitCombatReach
-UnitFlags = wmbapi.UnitFlags
-PlayerFlags = function() wmbapi.UnitFlags("player") end
-ObjectCreator = wmbapi.UnitCreator
-UnitCanBeLooted = wmbapi.UnitIsLootable
-UnitCanBeSkinned = wmbapi.UnitIsSkinnable
-UnitPitch = wmbapi.UnitPitch
-GetGroundZ(StartX, StartY [, Flags]) = function GetGroundZ return TraceLine(StartX, StartY, 10000, StartX, StartY, -10000, Flags) end
-GetCorpsePosition = wmbapi.GetCorpsePosition
-MoveTo = wmbapi.MoveTo
-ObjectDynamicFlags = wmbapi.ObjectDynamicFlags
-GetUnitTransport = wmbapi.UnitTransport
-GetUnitMovement = wmbapi.UnitMovementField
-WebsocketClose = wmbapi.CloseWebsocket
-WebsocketSend = wmbapi.SendWebsocketData
-ObjectType = {
+ObjectTypes = {
 	Object = wmbapi.GetObjectTypeFlagsTable().Object,
 	Item = wmbapi.GetObjectTypeFlagsTable().Item,
 	Container = wmbapi.GetObjectTypeFlagsTable().Container,
@@ -203,6 +63,305 @@ HitFlags = {
     EntityCollision = 0x100000,
 }
 
+StopFalling = wmbapi.StopFalling
+FaceDirection = wmbapi.FaceDirection
+ObjectTypeFlags = wmbapi.ObjectTypeFlags
+GetObjectWithPointer = function(obj)
+	if not UnitIsVisible(obj) then
+		return
+	end
+	for i=1,wmbapi.GetObjectCount() do
+		local pointer = wmbapi.GetObjectWithIndex(i)
+		if UnitIsVisible(pointer) and UnitIsUnit(pointer,obj) then
+			return pointer
+		end	
+	end
+end
+ObjectExists = wmbapi.ObjectExists
+ObjectIsVisible = UnitIsVisible
+ObjectPosition = wmbapi.ObjectPosition
+ObjectFacing = wmbapi.ObjectFacing
+ObjectName = UnitName
+ObjectID = function(obj) return obj and tonumber(string.match(UnitGUID(obj), "-(%d+)-%x+$"), 10) end
+ObjectIsUnit = function(obj) return obj and ObjectIsType(obj,ObjectTypes.Unit) end
+ObjectIsPlayer = function(obj) return obj and ObjectIsType(obj,ObjectTypes.Player) end
+ObjectIsGameObject = function(obj) return obj and ObjectIsType(obj,ObjectTypes.GameObject) end
+ObjectIsAreaTrigger = function(obj) return obj and ObjectIsType(obj,ObjectTypes.AreaTrigger) end
+GetDistanceBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2) return math.sqrt(math.pow(X2 - X1, 2) + math.pow(Y2 - Y1, 2) + math.pow(Z2 - Z1, 2)) end
+GetDistanceBetweenObjects = wmbapi.GetDistanceBetweenObjects
+GetPositionBetweenObjects = function(obj1,obj2,dist) 
+	local X1,Y1,Z1 = ObjectPosition(obj1)
+	local X2,Y2,Z2 = ObjectPosition(obj2)
+	local AngleXY, AngleXYZ = math.atan2(Y2 - Y1, X2 - X1) % (math.pi * 2), math.atan((Z1 - Z2) / math.sqrt(math.pow(X1 - X2, 2) + math.pow(Y1 - Y2, 2))) % math.pi
+	return math.cos(AngleXY) * dist + X1, math.sin(AngleXY) * dist + Y1, math.sin(AngleXYZ) * dist + Z1
+end
+GetPositionFromPosition = function(X, Y, Z, dist, angle) return math.cos(angle) * dist + X, math.sin(angle) * dist + Y, math.sin(0) * dist + Z end
+GetAnglesBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2) return math.atan2(Y2 - Y1, X2 - X1) % (math.pi * 2), math.atan((Z1 - Z2) / math.sqrt(math.pow(X1 - X2, 2) + math.pow(Y1 - Y2, 2))) % math.pi end
+GetPositionBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2, DistanceFromPosition1) local AngleXY, AngleXYZ = GetAnglesBetweenPositions(X1, Y1, Z1, X2, Y2, Z2) return GetPositionFromPosition(X1, Y1, Z1, DistanceFromPosition1, AngleXY, AngleXYZ) end
+ObjectIsFacing = wmbapi.ObjectIsFacing
+ObjectInteract = InteractUnit
+GetObjectCount = wmbapi.GetObjectCount
+GetObjectWithIndex = wmbapi.GetObjectWithIndex
+GetObjectWithGUID = wmbapi.GetObjectWithGUID
+UnitBoundingRadius = wmbapi.UnitBoundingRadius
+UnitCombatReach = wmbapi.UnitCombatReach
+UnitTarget = wmbapi.UnitTarget
+UnitCastID = function(unit) return select(7,GetSpellInfo(UnitCastingInfo(unit))), select(7,GetSpellInfo(UnitChannelInfo(unit))), wmbapi.UnitCastingTarget, wmbapi.UnitCastingTarget end
+TraceLine = wmbapi.TraceLine
+GetCameraPosition = wmbapi.GetCameraPosition
+CancelPendingSpell = wmbapi.CancelPendingSpell
+ClickPosition = wmbapi.ClickPosition
+IsAoEPending = wmbapi.IsAoEPending
+GetTargetingSpell = function()
+	while true do
+		local spellName,_,_,_,_,_,spellID = GetSpellInfo(i,"spell")
+		if not spellName then
+			break
+		elseif IsCurrentSpell(i,"spell") then
+			return spellID
+		end
+	end
+end
+WorldToScreen = wmbapi.WorldToScreen
+ScreenToWorld = wmbapi.ScreenToWorld
+GetDirectoryFiles = wmbapi.GetDirectoryFiles
+ReadFile = wmbapi.ReadFile
+WriteFile = wmbapi.WriteFile
+CreateDirectory = wmbapi.CreateDirectory
+GetSubdirectories = wmbapi.GetDirectoryFolders
+GetWoWDirectory = wmbapi.GetWoWDirectory
+GetHackDirectory = wmbapi.GetAppDirectory
+AddEventCallback = function(Event, Callback)
+	if not MiniBotFrames then
+		MiniBotFrames = CreateFrame("Frame")
+		MiniBotFrames:SetScript("OnEvent",MiniBotFrames_OnEvent)
+	end
+	MiniBotFrames:RegisterEvent(Event)
+end
+AddFrameCallback = function(frame)
+	if not MiniBotFrames then
+		MiniBotFrames = CreateFrame("Frame")
+	end
+	MiniBotFrames:SetScript("OnUpdate",frame)
+end
+SendHTTPRequest = wmbapi.SendHttpRequest
+GetKeyState = wmbapi.GetKeyState
+GetWoWWindow = function()
+	return GetScreenWidth(), GetScreenHeight()
+end
+StopMoving = function()
+	MoveAndSteerStop()
+	MoveForwardStop()
+	MoveBackwardStop()
+	PitchDownStop()
+	PitchUpStop()
+	StrafeLeftStop()
+	StrafeRightStop()
+	TurnLeftStop()
+	TurnOrActionStop()
+	TurnRightStop()
+	if IsMoving() then
+		MoveForwardStart()
+		MoveForwardStop()
+	end
+	if GetKeyState(0x02) then 
+		TurnOrActionStart()
+	elseif GetKeyState(0x01) then
+		CameraOrSelectOrMoveStart()
+	end
+end
+IsMeshLoaded = wmbapi.IsMapLoaded
+CalculatePath = wmbapi.FindPath
+SetMaximumClimbAngle = wmbapi.SetClimbAngle
+GetMapId = wmbapi.GetCurrentMapInfo
+ObjectGUID = UnitGUID
+ObjectEntryID = UnitGUID
+ObjectIsType = wmbapi.ObjectIsType
+GetAnglesBetweenObjects = wmbapi.GetAnglesBetweenObjects
+ObjectIsBehind = wmbapi.ObjectIsBehind
+ObjectDescriptor = wmbapi.ObjectDescriptor
+ObjectTypeFlags = wmbapi.ObjectTypeFlags
+ObjectField = wmbapi.ObjectField
+GetActivePlayer = function() return "player" end
+UnitIsFacing = ObjectIsFacing
+UnitIsFalling = function(unit) return unit and UnitMovementFlags(unit) == wmbapi.GetUnitMovementFlagsTable().Falling end
+UnitMovementFlags = wmbapi.UnitMovementFlags
+UnitBoundingRadius = wmbapi.UnitBoundingRadius
+UnitCombatReach = wmbapi.UnitCombatReach
+UnitFlags = wmbapi.UnitFlags
+PlayerFlags = function() wmbapi.UnitFlags("player") end
+ObjectCreator = wmbapi.UnitCreator
+UnitCanBeLooted = wmbapi.UnitIsLootable
+UnitCanBeSkinned = wmbapi.UnitIsSkinnable
+UnitPitch = wmbapi.UnitPitch
+GetGroundZ = function(StartX, StartY, Flags) return TraceLine(StartX, StartY, 10000, StartX, StartY, -10000, Flags or 0x10) end
+GetCorpsePosition = wmbapi.GetCorpsePosition
+MoveTo = wmbapi.MoveTo
+ObjectDynamicFlags = wmbapi.ObjectDynamicFlags
+GetUnitTransport = wmbapi.UnitTransport
+GetUnitMovement = wmbapi.UnitMovementField
+WebsocketClose = wmbapi.CloseWebsocket
+WebsocketSend = wmbapi.SendWebsocketData
+ObjectPointer = wmbapi.GetObject
+ObjectRawType = function(obj)
+	local result = 0
+	local type_flags = ObjectTypeFlags(obj)
+	if (band(type_flags, ObjectTypes.ActivePlayer) > 0) then
+		result = 7
+	elseif (band(type_flags, ObjectTypes.Player) > 0) then
+		result = 6
+	elseif (band(type_flags, ObjectTypes.Unit) > 0) then
+		result = 5
+	elseif (band(type_flags, ObjectTypes.GameObject) > 0) then
+		result = 8
+	elseif (band(type_flags, ObjectTypes.AreaTrigger) > 0) then
+		result = 11
+	elseif (band(type_flags, ObjectTypes.Item) > 0) then
+		result = 1
+	elseif (band(type_flags, ObjectTypes.Container) > 0) then
+		result = 2
+	elseif (band(type_flags, ObjectTypes.AzeriteEmpoweredItem) > 0) then
+		result = 3
+	elseif (band(type_flags, ObjectTypes.AzeriteItem) > 0) then
+		result = 4
+	elseif (band(type_flags, ObjectTypes.DynamicObject) > 0) then
+		result = 9
+	elseif (band(type_flags, ObjectTypes.Corpse) > 0) then
+		result = 10
+	elseif (band(type_flags, ObjectTypes.SceneObject) > 0) then
+		result = 12
+	elseif (band(type_flags, ObjectTypes.ConversationData) > 0) then
+		result = 13
+	end
+	return result
+end
+UnitCreatureTypeID = function(unit)
+	local Types = {
+	["Beast"] = 1,
+	["Wildtier"] = 1,
+	["Bestia"] = 1,
+	["Bête"] = 1,
+	["Fera"] = 1,
+	["Животное"] = 1,
+	["야수"] = 1,
+	["野兽"] = 1,
+	["野獸"] = 1,
+	["Critter"] = 2,
+	["Kleintier"] = 2,
+	["Alma"] = 2,
+	["Bestiole"] = 2,
+	["Animale"] = 2,
+	["Bicho"] = 2,
+	["Существо"] = 2,
+	["동물"] = 2,
+	["小动物"] = 2,
+	["小動物"] = 2,
+	["Demon"] = 3,
+	["Dämon"] = 3,
+	["Demonio"] = 3,
+	["Démon"] = 3,
+	["Demone"] = 3,
+	["Demônio"] = 3,
+	["Демон"] = 3,
+	["악마"] = 3,
+	["恶魔"] = 3,
+	["惡魔"] = 3,
+	["Dragonkin"] = 4,
+	["Drachkin"] = 4,
+	["Dragon"] = 4,
+	["Dragón"] = 4,
+	["Draconien"] = 4,
+	["Dragoide"] = 4,
+	["Dracônico"] = 4,
+	["Дракон"] = 4,
+	["용족"] = 4,
+	["龙类"] = 4,
+	["龍類"] = 4,
+	["Elemental"] = 5,
+	["Elementar"] = 5,
+	["Élémentaire"] = 5,
+	["Elementale"] = 5,
+	["Элементаль"] = 5,
+	["정령"] = 5,
+	["元素生物"] = 5,
+	["Gas Cloud"] = 6,
+	["Gaswolke"] = 6,
+	["Nube de Gas"] = 6,
+	["Nuage de gaz"] = 6,
+	["Nube di Gas"] = 6,
+	["Gasoso"] = 6,
+	["Газовое облако"] = 6,
+	["가스"] = 6,
+	["气体云雾"] = 6,
+	["氣體雲"] = 6,
+	["Giant"] = 7,
+	["Riese"] = 7,
+	["Gigante"] = 7,
+	["Géant"] = 7,
+	["Великан"] = 7,
+	["거인"] = 7,
+	["巨人"] = 7,
+	["Humanoid"] = 8,
+	["Humanoide"] = 8,
+	["Humanoïde"] = 8,
+	["Umanoide"] = 8,
+	["Гуманоид"] = 8,
+	["인간형"] = 8,
+	["人型生物"] = 8,
+	["Mechanical"] = 9,
+	["Mechanisch"] = 9,
+	["Mecánico"] = 9,
+	["Machine"] = 9,
+	["Meccanico"] = 9,
+	["Mecânico"] = 9,
+	["Механизм"] = 9,
+	["기계"] = 9,
+	["机械"] = 9,
+	["機械"] = 9,
+	["Non-combat Pet"] = 10,
+	["Haustier"] = 10,
+	["Mascota no combatiente"] = 10,
+	["Mascota mansa"] = 10,
+	["Familier pacifique"] = 10,
+	["Animale Non combattente"] = 10,
+	["Mascote não-combatente"] = 10,
+	["Спутник"] = 10,
+	["애완동물"] = 10,
+	["非战斗宠物"] = 10,
+	["非戰鬥寵物"] = 10,
+	["Not specified"] = 11,
+	["Nicht spezifiziert"] = 11,
+	["No especificado"] = 11,
+	["Sin especificar"] = 11,
+	["Non spécifié"] = 11,
+	["Non Specificato"] = 11,
+	["Não especificado"] = 11,
+	["Не указано"] = 11,
+	["기타"] = 11,
+	["未指定"] = 11,
+	["不明"] = 11,
+	["Totem"] = 12,
+	["Tótem"] = 12,
+	["Totém"] = 12,
+	["Тотем"] = 12,
+	["토템"] = 12,
+	["图腾"] = 12,
+	["圖騰"] = 12,
+	["Undead"] = 13,
+	["Untoter"] = 13,
+	["No-muerto"] = 13,
+	["Mort-vivant"] = 13,
+	["Non Morto"] = 13,
+	["Renegado"] = 13,
+	["Нежить"] = 13,
+	["언데드"] = 13,
+	["亡灵"] = 13,
+	["不死族"] = 13,
+	}
+	return unit and Types[UnitCreatureType(unit)]
+]
+end
+
 
 -- Missing API
 StartFalling = nil
@@ -215,7 +374,6 @@ AddTeleportCallbacks = nil
 ObjectIsCollidable = nil
 ObjectBoundingBox = nil
 GameObjectFlags = nil
-ObjectRawType = nil
 GetServerPosition = nil
 ObjectIsFacingPosition = nil
 ObjectAnimation = nil
@@ -223,7 +381,6 @@ GetActiveMover = nil
 UnitIsStanding = nil
 SetMovementFlags = nil
 SendMovementUpdate = nil
-UnitCreatureTypeID = nil
 ObjectDisplayID = nil
 GetGameObjectType = nil
 UnitSetDisplayID = nil

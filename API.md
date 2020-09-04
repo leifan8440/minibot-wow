@@ -108,6 +108,29 @@ Gets all spanning circles of a specific radius over certain weighted points.
 
 [Back to Top](#custom-api)
 
+## Common (Memory)
+
+- `value = ReadMemory(module, offset, type)`
+
+Reads a value at a specific memory offset/rva in a specific memory module.
+
+```lua
+-- module (string): The name of the memory module. nil for "Wow.exe" aka the main module.
+-- offset (number): The offset/rva in the memory module to read.
+-- type (number): The type of the value. Check GetValueTypesTable().
+-- value (number): The result value. nil if the memory address is not found.
+```
+
+- `offset = GetMemoryOffset(module, address)`
+
+Gets the offset of a memory address in a specific module.
+
+```lua
+-- module (string): The name of the memory module. nil for "Wow.exe" aka the main module.
+-- address (number): The absolute memory address.
+-- offset (number): The result offset. nil if the memory address is not found.
+```
+
 ## Common (Miscellanea)
 
 - `down, toggled = GetKeyState(key)`
@@ -118,9 +141,13 @@ Gets the pressed state of a specific key.
 
 Plays a specific sound WAV/MP3 file once.
 
+- `RunScript(name, script)`
+
+Runs a Lua script with a name by engine.
+
 - `SetCustomScript(name, script)`
 
-Add a custom script (indexed by name) that gets loaded side by side with the engine modules (Primary and Secondary). Notice that such script also gets loaded in GLUE screen.
+Adds a custom script (indexed by name) that gets loaded side by side with the engine modules (Primary and Secondary). Notice that such script also gets loaded in GLUE screen.
 
 [Back to Top](#custom-api)
 
@@ -466,6 +493,10 @@ Gets the field value of a unit's movement struct.
 [Back to Top](#custom-api)
 
 ## In-World (Object-General)
+
+- `object = GetObject(object | UnitID)`
+
+Gets the object by its ID. nil if the object does not exist.
 
 - `object = GetObjectWithGUID(guid)`
 

@@ -503,6 +503,14 @@ Gets the field value of a unit's movement struct.
 
 Gets the ID of a unit's creature type.
 
+- `familyId = UnitCreatureFamilyId(unit)`
+
+Gets the ID of a unit's creature family. nil if the unit does not have one.
+
+- `value = UnitCreatureField(object, offset, type)`
+
+Gets the field value of a unit's creature cache struct.
+
 [Back to Top](#custom-api)
 
 ## In-World (Object-General)

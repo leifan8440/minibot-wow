@@ -491,6 +491,10 @@ Gets the movement flags of a unit, indicating its moving status.
 
 Gets the field value of a unit's movement struct.
 
+- `typeId = UnitCreatureTypeId(unit)`
+
+Gets the ID of a unit's creature type.
+
 [Back to Top](#custom-api)
 
 ## In-World (Object-General)

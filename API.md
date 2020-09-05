@@ -48,6 +48,10 @@ Gets the base directory path of app storage.
 
 Gets the app base directory path.
 
+- `username = GetAppUsername()`
+
+Gets the app username.
+
 - `path = GetWoWDirectory()`
 
 Gets the WoW base directory path.

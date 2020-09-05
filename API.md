@@ -56,6 +56,10 @@ Gets the app username.
 
 Gets the WoW base directory path.
 
+- `account = GetCurrentAccount()`
+
+Gets the name of the current WoW account. (same as the WTF subfolder)
+
 - `value = GetSystemVar(name)`
 
 Gets the value of the system variable previously set by `SetSystemVar`. **nil** if it does not exist.

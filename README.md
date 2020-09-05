@@ -45,7 +45,7 @@
 
 **MiniBot for WoW** is an easy-to-use, advanced, one-stop and subscription-based platform for developing, releasing and running WoW bot projects. It brings lots of revolutionary features while you don’t need anything else to get all the bot magics to become true!
 
-The whole **MiniBot** has many innovative features. To name just a few, we will highlight only the most important and revolutionary ones here.
+The whole **MiniBot** has many innovative features. To name just a few, we will highlight only the most important and revolutionary ones here and in the [PROMO VIDEO](https://www.youtube.com/watch?v=_n1Dtu_zdaQ).
 
 ## Proprietary Kernel
 

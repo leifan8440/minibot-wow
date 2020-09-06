@@ -417,7 +417,7 @@ https://docs.google.com/spreadsheets/d/1dzurAMgAs0RuRevQZHptpJVQYJFBKb9_gyHsLMS-
 
 ## YOUR FIRST SIMPLE GRIND PROJECT
 
-If you are familiar with the concepts above, it is time to get your hands dirty. If you are still confused with any concept, feel free to jump back and forth. In this section, we are going to build your first Bot project: `SIMPLE GRIND`. The goal is to farm mobs and resources in an open world area. Besides, the character should also be able to return to town for vendoring and replenishment, to make the cycle fully autonomous!
+If you are familiar with the concepts above, it is time to get your hands dirty. If you are still confused with any concept, feel free to jump back and forth or watch the [TUTORIAL VIDEO](https://www.youtube.com/watch?v=DMv_8M87ndM). In this section, we are going to build your first Bot project: `SIMPLE GRIND`. The goal is to farm mobs and resources in an open world area. Besides, the character should also be able to return to town for vendoring and replenishment, to make the cycle fully autonomous!
 
 ### START MINIBOT STUDIO
 

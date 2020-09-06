@@ -129,7 +129,7 @@ As a normal Bot user, the steps to get onboard are within a couple of minutes.
 
   <img src="images/scripts.png" />
 
-- Configure the launch options, launch the system, and enter WoW. (Notice that you can only launch one of the two WoW versions at the same time)
+- Configure the launch options, launch the system, and enter WoW (note that you can only launch one of the two WoW versions at the same time). If you have any errors on start-up, please refer to the [Troubleshooting page](https://www.minibot.top/topic/29/troubleshooting-errors-on-minibot-start-up).
 
   <img src="images/gui-launch.png" width="300" />
 

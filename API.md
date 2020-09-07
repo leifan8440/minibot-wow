@@ -77,6 +77,55 @@ The standard Lua environment gets reset after screen switch including **/reload*
 
 [Back to Top](#custom-api)
 
+## Common (Constants)
+
+- `encodings = GetStringEncodingsTable()`
+
+Gets the table of supported string encodings.
+```lua
+encodings = {
+  Base64 = 1,
+  Hex = 2
+}
+```
+
+## Common (Encryption)
+
+- `output = AesEncrypt(input, key, iv[, encoding])`
+
+Encrypts a plain string by AES-256 with PKCS#7 padding.
+
+```lua
+-- input (string): The plain string.
+-- key (string): The key for encryption (must be 32 letters).
+-- iv (string): The IV for encryption (must be 16 letters).
+-- encoding (number): One of the encodings to encrypt the result, from GetStringEncodingsTable(). nil for default encodings.Base64.
+-- output (string): The encrypted string.
+```
+
+- `output = AesDecrypt(input, key, iv[, encoding])`
+
+Decrypts an encrypted string by AES-256 with PKCS#7 padding.
+
+```lua
+-- input (string): The encrypted string.
+-- key (string): The key for encryption (must be 32 letters).
+-- iv (string): The IV for encryption (must be 16 letters).
+-- encoding (number): One of the encodings to encrypt the result, from GetStringEncodingsTable(). nil for default encodings.Base64.
+-- output (string): The plain string.
+```
+
+In order to make sure your own AES encryption matches the API above, the test vector is given below:
+
+```lua
+local test = "test";
+local encodings = GetStringEncodingsTable();
+local encrypted_string = AesEncrypt(test, "01234567890123456789012345678901", "0123456789012345", encodings.Hex);
+local decrypted_string = AesDecrypt(encrypted_string, "01234567890123456789012345678901", "0123456789012345", encodings.Hex);
+print("result:", encrypted_string, decrypted_string, test == decrypted_string);
+-- result: A68C23C38693A8EBD1D6276FBB90E5E1 test true
+```
+
 ## Common (File)
 
 - `isOrNot = FileExists(path)`

@@ -236,6 +236,13 @@ ObjectRawType = function(obj)
 	end
 	return result
 end
+GetOffset = function(offset)
+	for i, k in pairs(wmbapi.GetObjectDescriptorsTable()) do
+		if tostring(i) == offset then
+			return k
+		end
+	end
+end
 
 
 -- Missing API

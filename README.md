@@ -45,7 +45,7 @@
 
 **MiniBot for WoW** is an easy-to-use, advanced, one-stop and subscription-based platform for developing, releasing and running WoW bot projects. It brings lots of revolutionary features while you don’t need anything else to get all the bot magics to become true!
 
-The whole **MiniBot** has many innovative features. To name just a few, we will highlight only the most important and revolutionary ones here.
+The whole **MiniBot** has many innovative features. To name just a few, we will highlight only the most important and revolutionary ones here and in the [PROMO VIDEO](https://www.youtube.com/watch?v=_n1Dtu_zdaQ).
 
 ## Proprietary Kernel
 
@@ -109,7 +109,7 @@ As a normal Bot user, the steps to get onboard are within a couple of minutes.
   - For Intel users, your CPU must be Core Ivy Bridge (3rd generation) or later.
   - For AMD users, your CPU must be Ryzen series.
 
-- Make sure virtualization is enabled correctly in your PC BIOS setting, verified by [Leomoon CPU-V](#https://leomoon.com/downloads/desktop-apps/leomoon-cpu-v/).
+- Make sure virtualization is enabled correctly in your PC BIOS setting, verified by [Leomoon CPU-V](https://leomoon.com/downloads/desktop-apps/leomoon-cpu-v/).
 
 - Make sure NO protection software is running, including anti-virus such as Windows Defender and other anti-cheat platforms such as FaceIt and Vanguard.
 
@@ -129,7 +129,7 @@ As a normal Bot user, the steps to get onboard are within a couple of minutes.
 
   <img src="images/scripts.png" />
 
-- Configure the launch options, launch the system, and enter WoW. (Notice that you can only launch one of the two WoW versions at the same time)
+- Configure the launch options, launch the system, and enter WoW (note that you can only launch one of the two WoW versions at the same time). If you have any errors on start-up, please refer to the [Troubleshooting page](https://www.minibot.top/topic/29/troubleshooting-errors-on-minibot-start-up).
 
   <img src="images/gui-launch.png" width="300" />
 
@@ -417,7 +417,7 @@ https://docs.google.com/spreadsheets/d/1dzurAMgAs0RuRevQZHptpJVQYJFBKb9_gyHsLMS-
 
 ## YOUR FIRST SIMPLE GRIND PROJECT
 
-If you are familiar with the concepts above, it is time to get your hands dirty. If you are still confused with any concept, feel free to jump back and forth. In this section, we are going to build your first Bot project: `SIMPLE GRIND`. The goal is to farm mobs and resources in an open world area. Besides, the character should also be able to return to town for vendoring and replenishment, to make the cycle fully autonomous!
+If you are familiar with the concepts above, it is time to get your hands dirty. If you are still confused with any concept, feel free to jump back and forth or watch the [TUTORIAL VIDEO](https://www.youtube.com/watch?v=DMv_8M87ndM). In this section, we are going to build your first Bot project: `SIMPLE GRIND`. The goal is to farm mobs and resources in an open world area. Besides, the character should also be able to return to town for vendoring and replenishment, to make the cycle fully autonomous!
 
 ### START MINIBOT STUDIO
 

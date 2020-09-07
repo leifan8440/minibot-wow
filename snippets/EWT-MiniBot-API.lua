@@ -62,6 +62,26 @@ HitFlags = {
     Liquid = 0x20000,
     EntityCollision = 0x100000,
 }
+Offsets = {
+	["cgunitdata__animtier"] = "CGUnitData__animTier",
+	["cgunitdata__boundingradius"] = "CGUnitData__boundingRadius",
+	["cgunitdata__combatreach"] = "CGUnitData__combatReach",
+	["cgunitdata__flags"] = "CGUnitData__flags",
+	["cgunitdata__target"] = "CGUnitData__target",
+	["cgplayerdata__currentspecid"] = "CGPlayerData__currentSpecID",
+	["cgunitdata__createdby"] = "CGUnitData__createdBy",
+	["cgareatriggerdata__m_spelid"] = "CGAreaTriggerData__m_spellID",
+	["cgobjectdata__m_guid"] = "CGObjectData__m_guid",
+	["cggameobjectData__m_createdby"] = "CGGameObjectData__m_createdBy",
+	["cgunitdata__flags3"] = "CGUnitData__flags3",
+	["cgunitdata__flags2"] = "CGUnitData__flags2",
+	["cgunitdata__mountdisplayid"] = "CGUnitData__mountDisplayID",
+	["cgunitdata__summonedby"] = "CGUnitData__summonedBy",
+	["cgunitdata__demoncreator"] = "CGUnitData__demonCreator",
+	["cgobjectdata__m_scale"] = "CGObjectData__m_scale",
+	["cgobjectdata__m_dynamicflags"] = "CGObjectData__m_dynamicFlags",
+	["cgareatriggerdata__m_caster"] = "CGAreaTriggerData__m_caster"
+}
 
 StopFalling = wmbapi.StopFalling
 FaceDirection = wmbapi.FaceDirection
@@ -203,7 +223,7 @@ GetUnitMovement = wmbapi.UnitMovementField
 WebsocketClose = wmbapi.CloseWebsocket
 WebsocketSend = wmbapi.SendWebsocketData
 ObjectPointer = wmbapi.GetObject
-UnitCreatureTypeID = wmbapi.UnitCreatureTypeID
+UnitCreatureTypeID = wmbapi.UnitCreatureTypeId
 ObjectRawType = function(obj)
 	local result = 0
 	local type_flags = ObjectTypeFlags(obj)
@@ -235,6 +255,9 @@ ObjectRawType = function(obj)
 		result = 13
 	end
 	return result
+end
+GetOffset = function(offset)
+	return wmbapi.GetObjectDescriptorsTable()[Offsets[string.lower(offset)]]
 end
 
 

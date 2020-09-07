@@ -112,7 +112,7 @@ Decrypts an encrypted string by AES-256 with PKCS#7 padding.
 -- key (string): The key for encryption (must be 32 letters).
 -- iv (string): The IV for encryption (must be 16 letters).
 -- encoding (number): One of the encodings to encrypt the result, from GetStringEncodingsTable(). nil for default encodings.Base64.
--- output (string): The plain string.
+-- output (string): The plain string. nil if decryption fails.
 ```
 
 In order to make sure your own AES encryption matches the API above, the test vector is given below:

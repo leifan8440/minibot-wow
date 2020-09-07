@@ -224,6 +224,8 @@ WebsocketClose = wmbapi.CloseWebsocket
 WebsocketSend = wmbapi.SendWebsocketData
 ObjectPointer = wmbapi.GetObject
 UnitCreatureTypeID = wmbapi.UnitCreatureTypeId
+AesEncrypt = wmbapi.AesEncrypt
+AesDecrypt = wmbapi.AesDecrypt
 ObjectRawType = function(obj)
 	local result = 0
 	local type_flags = ObjectTypeFlags(obj)
@@ -322,8 +324,6 @@ GetClockTime = nil
 SendPacket = nil
 GetByteValue = nil
 UnloadEWT = nil
-AesEncrypt = nil
-AesDecrypt = nil
 RsaGetPubKey = nil
 RsaEncrypt = nil
 HashString = nil
@@ -521,3 +521,10 @@ SetNoClipModes(modes)
 
 modes = GetNoClipModes()
 --Gets the current no-clip mode flags
+
+encodings = GetStringEncodingsTable()
+--Gets the table of supported string encodings.
+encodings = {
+  Base64 = 1,
+  Hex = 2
+}

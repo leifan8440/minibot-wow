@@ -456,9 +456,17 @@ Unloads a navigation map.
 
 Checks if a navigation map is loaded.
 
-- `path = FindPath(mapId, x1, y1, z1, x2, y2, z2)`
+- `path = FindPath(mapId, x1, y1, z1, x2, y2, z2[, ignoreWater = true, waypointCountMax = 1024])`
 
 Calculates a path to navigate from one position to another.
+
+```lua
+-- mapId (number): The map ID.
+-- x1, y1, z1 (number): The start position.
+-- x2, y2, z2 (number): The end position.
+-- ignoreWater (boolean): Whether to avoid walking into water terrain.
+-- waypointCountMax (number): The count maximum of the path waypoints. Returns nil even if a path with too many waypoints is found.
+```
 
 [Back to Top](#custom-api)
 

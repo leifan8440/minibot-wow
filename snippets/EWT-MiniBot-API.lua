@@ -528,3 +528,6 @@ encodings = {
   Base64 = 1,
   Hex = 2
 }
+
+account = GetCurrentAccount()
+--Gets the name of the current WoW account. (same as the WTF subfolder)

@@ -89,6 +89,30 @@ encodings = {
 }
 ```
 
+- `types = GetValueTypesTable()`
+
+Gets the table that contains all value types to read from memory, which looks like:
+
+```lua
+types = {
+  Bool = 1,
+  Char = 2,
+  Byte = 3,
+  Short = 4,
+  UShort = 5,
+  Int = 6,
+  UInt = 7,
+  Long = 8,
+  ULong = 9,
+  Float = 10,
+  Double = 11,
+  String = 12,
+  IntPtr = 13,
+  UIntPtr = 14,
+  GUID = 15,
+}
+```
+
 ## Common (Encryption)
 
 - `output = AesEncrypt(input, key, iv[, encoding])`
@@ -472,25 +496,62 @@ Calculates a path to navigate from one position to another.
 
 ## In-World (Object-Constants)
 
-- `types = GetValueTypesTable()`
-
-Gets the table that contains all object descriptor value types.
+All of the constants are contained in different tables as below. You should print the most up-to-date actual constants in-game using a simple Lua "for-pairs" loop for 100% accuracy.
 
 - `flags = GetObjectTypeFlagsTable()`
 
-Gets the table that contains all type flags.
+Gets the table that contains all type flags, which looks like:
+
+```lua
+flags = {
+  Object = 1,
+  Item = 2,
+  Container = 4,
+  AzeriteEmpoweredItem = 8,
+  AzeriteItem = 16,
+  ...
+}
+```
 
 - `fields = GetObjectFieldsTable()`
 
-Gets the table that contains all object field offsets.
+Gets the table that contains all object field offsets, which looks like:
+
+```lua
+fields = {
+  ["AnimationState"] = 123,
+  ...
+}
+```
 
 - `descriptors = GetObjectDescriptorsTable()`
 
-Gets the table that contains all object descriptor offsets.
+Gets the table that contains all object descriptor offsets, which looks like:
+
+```lua
+descriptors = {
+  ["CGObjectData__m_guid"] = 0,
+  ["CGObjectData__m_entryID"] = 8,
+  ...
+}
+```
+
+Also notice that there are some descriptor names ending with "_union". This indicates that there might be one or several child values mixed together in the descriptor.
 
 - `movementFlags = GetUnitMovementFlagsTable()`
 
-Gets the table that contains all unit movement flags.
+Gets the table that contains all unit movement flags, which looks like:
+
+```lua
+descriptors = {
+  Forward = 1,
+  Backward = 2,
+  StrafeLeft = 4,
+  StrafeRight = 8,
+  TurnLeft = 16,
+  ...  
+}
+```
 
 [Back to Top](#custom-api)
 

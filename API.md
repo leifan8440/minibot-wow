@@ -2,6 +2,7 @@
 
 - Common
   - [Arguments](#common-arguments)
+  - [Constants](#common-constants)
   - [File](#common-file)
   - [Maths](#common-maths)
   - [Memory](#common-memory)

@@ -696,7 +696,7 @@ Checks whether an object exists in memory.
 Gets the ID of an object.
 
 ```lua
--- id (number): The object ID.
+-- id (number): The object ID. nil if the object does not exist anymore.
 ```
 
 - `x, y, z = ObjectPosition(object)`

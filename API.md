@@ -739,29 +739,36 @@ Gets whether a unit is mounted.
 
 ## In-World (Object Manager)
 
-- `count = GetObjectCount()`
+- `count, isUpdated, addedObjects, removedObjects = GetObjectCount()`
 
-Gets the count of all world objects.
+Gets the count of all world objects, as well as the changes compared to the last call. This must be called first to search and save the memory objects. (ideally once for every frame)
+
+```lua
+-- count (number): The current total count.
+-- isUpdated (boolean): Whether the current world objects are changed compared to the last call.
+-- addedObjects (table): The added world objects array compared to the last call.
+-- removedObjects (table): The added world objects array compared to the last call.
+```
 
 - `object = GetObjectWithIndex(index)`
 
-Gets a specific world object by its index.
+Gets a specific world object by its index in the saved memory objects from the previous call to `GetObjectCount`.
 
 - `count = GetNpcCount([center | x, y, z][, range][, rangeOption])`
 
-Gets the count of specific NPCs.
+Gets the count of specific NPCs, similar as `GetObjectCount` except that it is restricted to NPCs (non-player units) only.
 
 - `npc = GetNpcWithIndex(index)`
 
-Gets a specific NPC by its index.
+Gets a specific NPC by its index in the saved memory objects from the previous call to `GetNpcCount`.
 
 - `count = GetPlayerCount([center | x, y, z][, range][, rangeOption])`
 
-Gets the count of specific players.
+Gets the count of specific players, similar as `GetNpcCount` except that it is restricted to players only.
 
 - `player = GetPlayerWithIndex(index)`
 
-Gets a specific player by its index.
+Gets a specific player by its index in the saved memory objects from the previous call to `GetPlayerCount`.
 
 ```lua
 -- rangeOption can optionally specify the meaning of range, which is one of the several values below.
@@ -774,27 +781,27 @@ both_melee_reaches_with_movement = 4; -- consider the unit as a moving melee tar
 
 - `count = GetGameObjectCount([center | x, y, z][, range])`
 
-Gets the count of specific game objects.
+Gets the count of specific game objects, similar as `GetNpcCount` except that it is restricted to game objects only.
 
 - `gameObject = GetGameObjectWithIndex(index)`
 
-Gets a specific game object by its index.
+Gets a specific game object by its index in the saved memory objects from the previous call to `GetGameObjectCount`.
 
 - `count = GetDynamicObjectCount([center | x, y, z][, range])`
 
-Gets the count of specific dynamic objects.
+Gets the count of specific dynamic objects, similar as `GetNpcCount` except that it is restricted to dynamic objects only.
 
 - `dynamicObject = GetDynamicObjectWithIndex(index)`
 
-Gets a specific dynamic object by its index.
+Gets a specific dynamic object by its index in the saved memory objects from the previous call to `GetDynamicObjectCount`.
 
 - `count = GetAreaTriggerCount([center | x, y, z][, range])`
 
-Gets the count of specific area triggers.
+Gets the count of specific area triggers, similar as `GetNpcCount` except that it is restricted to area triggers only.
 
 - `areaTrigger = GetAreaTriggerWithIndex(index)`
 
-Gets a specific area trigger by its index.
+Gets a specific area trigger by its index in the saved memory objects from the previous call to `GetAreaTriggerCount`.
 
 [Back to Top](#custom-api)
 

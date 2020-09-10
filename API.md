@@ -412,7 +412,7 @@ Moves the player to a specific position, using CTM.
 
 - `count = GetAuraCount(unit, [spellId])`
 
-Gets the count auras on a specific unit, optionally filtered by spell ID. You must call this API first to actually search auras to be saved in memory. This API returns all auras including hidden ones, more than you can get normally by BLZ API [UnitAura](https://wow.gamepedia.com/API_UnitAura).
+Gets the count of auras on a specific unit, optionally filtered by spell ID. You must call this API first to actually search auras to be saved in memory. This API returns all auras including hidden ones, more than you can get normally by BLZ API [UnitAura](https://wow.gamepedia.com/API_UnitAura).
 
 ```lua
 -- unit (string): The unit to check the auras.

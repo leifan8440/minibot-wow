@@ -416,7 +416,7 @@ Gets the count of auras on a specific unit, optionally filtered by spell ID. You
 
 ```lua
 -- unit (string): The unit to check the auras.
--- spellId (number): The spell ID of the auras to filter.
+-- spellId (number): The spell ID of the auras to filter. nil for all.
 -- count (number): The actual aura count. nil if the unit does not exist.
 ```
 

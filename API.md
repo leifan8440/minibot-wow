@@ -10,6 +10,7 @@
   - [Network](#common-network)
 - In-World
   - [Action](#in-world-action)
+  - [Aura](#in-world-aura)
   - [BlackTech](#in-world-blacktech)
   - [Missile](#in-world-missile)
   - [Navigation](#in-world-navigation)
@@ -404,6 +405,42 @@ Sets the player vertical pitch, in radian.
 - `MoveTo(x, y, z[, instantTurn])`
 
 Moves the player to a specific position, using CTM.
+
+[Back to Top](#custom-api)
+
+## In-World (Aura)
+
+- `count = GetAuraCount(unit, [spellId])`
+
+Gets the count auras on a specific unit, optionally filtered by spell ID. You must call this API first to actually search auras to be saved in memory. This API returns all auras including hidden ones, more than you can get normally by BLZ API [UnitAura](https://wow.gamepedia.com/API_UnitAura).
+
+```lua
+-- unit (string): The unit to check the auras.
+-- spellId (number): The spell ID of the auras to filter.
+-- count (number): The actual aura count. nil if the unit does not exist.
+```
+
+- `spellId | ... = GetAuraWithIndex(index[, detailed = false])`
+
+Gets the info of a specific aura, saved by the most recent call to `GetAuraCount()`. If "detailed" is true, the return values will be the same as the BLZ API [UnitAura](https://wow.gamepedia.com/API_UnitAura). If "detailed" is false, the return value will be only the aura spell ID with a bit better performance.
+
+```lua
+-- index (number): The index of the aura.
+-- detailed (boolean): Whether to get the details for the aura.
+-- spellId (number): The spell ID of the aura.
+```
+
+A code example to show all auras of the current target is given below.
+
+```lua
+if (UnitExists("target")) then
+  local aura_count = GetAuraCount("target");
+  print(">>>>" .. UnitName("target") .. "<<<<");
+  for i = 1, aura_count do
+    print(GetAuraWithIndex(i, true));
+  end
+end
+```
 
 [Back to Top](#custom-api)
 

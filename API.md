@@ -764,7 +764,7 @@ Gets a specific NPC by its index in the saved memory objects from the previous c
 
 - `count = GetPlayerCount([center | x, y, z][, range][, rangeOption])`
 
-Gets the count of specific players, similar as `GetNpcCount` except that it is restricted to players only.
+Gets the count of specific players, similar as `GetObjectCount` except that it is restricted to players only.
 
 - `player = GetPlayerWithIndex(index)`
 

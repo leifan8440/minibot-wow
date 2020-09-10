@@ -691,6 +691,14 @@ Checks if an object is of specific type.
 
 Checks whether an object exists in memory.
 
+- `id = ObjectId(object)`
+
+Gets the ID of an object.
+
+```lua
+-- id (number): The object ID.
+```
+
 - `x, y, z = ObjectPosition(object)`
 
 Gets the world position of an object.

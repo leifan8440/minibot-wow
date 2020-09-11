@@ -99,12 +99,7 @@ ObjectIsGameObject = function(obj) return obj and ObjectIsType(obj,ObjectTypes.G
 ObjectIsAreaTrigger = function(obj) return obj and ObjectIsType(obj,ObjectTypes.AreaTrigger) end
 GetDistanceBetweenPositions = wmbapi.GetDistanceBetweenPositions
 GetDistanceBetweenObjects = wmbapi.GetDistanceBetweenObjects
-GetPositionBetweenObjects = function(obj1,obj2,dist) 
-	local X1,Y1,Z1 = ObjectPosition(obj1)
-	local X2,Y2,Z2 = ObjectPosition(obj2)
-	local AngleXY, AngleXYZ = math.atan2(Y2 - Y1, X2 - X1) % (math.pi * 2), math.atan((Z1 - Z2) / math.sqrt(math.pow(X1 - X2, 2) + math.pow(Y1 - Y2, 2))) % math.pi
-	return math.cos(AngleXY) * dist + X1, math.sin(AngleXY) * dist + Y1, math.sin(AngleXYZ) * dist + Z1
-end
+GetPositionBetweenObjects = wmbapi.GetPositionBetweenObjects
 GetPositionFromPosition = wmbapi.GetPositionFromPosition
 GetAnglesBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2) return math.atan2(Y2 - Y1, X2 - X1) % (math.pi * 2), math.atan((Z1 - Z2) / math.sqrt(math.pow(X1 - X2, 2) + math.pow(Y1 - Y2, 2))) % math.pi end
 GetPositionBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2, DistanceFromPosition1) local AngleXY, AngleXYZ = GetAnglesBetweenPositions(X1, Y1, Z1, X2, Y2, Z2) return GetPositionFromPosition(X1, Y1, Z1, DistanceFromPosition1, AngleXY, AngleXYZ) end

@@ -102,7 +102,7 @@ GetDistanceBetweenObjects = wmbapi.GetDistanceBetweenObjects
 GetPositionBetweenObjects = wmbapi.GetPositionBetweenObjects
 GetPositionFromPosition = wmbapi.GetPositionFromPosition
 GetAnglesBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2) return math.atan2(Y2 - Y1, X2 - X1) % (math.pi * 2), math.atan((Z1 - Z2) / math.sqrt(math.pow(X1 - X2, 2) + math.pow(Y1 - Y2, 2))) % math.pi end
-GetPositionBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2, DistanceFromPosition1) local AngleXY, AngleXYZ = GetAnglesBetweenPositions(X1, Y1, Z1, X2, Y2, Z2) return GetPositionFromPosition(X1, Y1, Z1, DistanceFromPosition1, AngleXY, AngleXYZ) end
+GetPositionBetweenPositions = wmbapi.GetPositionBetweenPositions
 ObjectIsFacing = wmbapi.ObjectIsFacing
 ObjectInteract = InteractUnit
 GetObjectCount = wmbapi.GetObjectCount

@@ -707,9 +707,25 @@ Gets the world position of an object.
 
 Gets the horizontal rotation of an object, in radian.
 
+- `distance = GetDistanceBetweenPositions(x1, y1, z1, x2, y2, z2)`
+
+Gets the distance between two positions in 3D.
+
 - `distance = GetDistanceBetweenObjects(object1, object2)`
 
 Gets the distance between two objects in 3D.
+
+- `x, y, z = GetPositionBetweenObjects(object1, object2, distance)`
+
+Gets the position from object 1 to object 2.
+
+- `x, y, z = GetPositionBetweenPositions(x1, y1, z1, x2, y2, z2, distance)`
+
+Gets the position from position 1 to position 2.
+
+- `x, y, z = GetPositionFromPosition(x1, y1, z1, distance, facing, pitch)`
+
+Gets the position relative to a specific position.
 
 - `facing, pitch = GetAnglesBetweenObjects(object1, object2)`
 

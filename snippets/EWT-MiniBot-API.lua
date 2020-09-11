@@ -84,7 +84,7 @@ Offsets = {
 }
 
 StopFalling = wmbapi.StopFalling
-FaceDirection = wmbapi.FaceDirection
+FaceDirection = function(a) if wmbapi.GetObject(a) then wmbapi.FaceDirection(GetAnglesBetweenObjects(a,"player"),true) else wmbapi.FaceDirection(a,true) end end
 ObjectTypeFlags = wmbapi.ObjectTypeFlags
 GetObjectWithPointer = wmbapi.GetObject
 ObjectExists = wmbapi.ObjectExists
@@ -122,17 +122,8 @@ GetCameraPosition = wmbapi.GetCameraPosition
 CancelPendingSpell = wmbapi.CancelPendingSpell
 ClickPosition = wmbapi.ClickPosition
 IsAoEPending = wmbapi.IsAoEPending
-GetTargetingSpell = function()
-	while true do
-		local spellName,_,_,_,_,_,spellID = GetSpellInfo(i,"spell")
-		if not spellName then
-			break
-		elseif IsCurrentSpell(i,"spell") then
-			return spellID
-		end
-	end
-end
-WorldToScreen = wmbapi.WorldToScreen
+GetTargetingSpell = function() return end
+WorldToScreen = function(...) return select(2,wmbapi.WorldToScreen(...)) end
 ScreenToWorld = wmbapi.ScreenToWorld
 GetDirectoryFiles = wmbapi.GetDirectoryFiles
 ReadFile = wmbapi.ReadFile
@@ -193,7 +184,7 @@ ObjectDescriptor = wmbapi.ObjectDescriptor
 ObjectTypeFlags = wmbapi.ObjectTypeFlags
 ObjectField = wmbapi.ObjectField
 GetActivePlayer = function() return "player" end
-UnitIsFacing = ObjectIsFacing
+UnitIsFacing = function(unit1,unit2,degree) return ObjectIsFacing(unit1,unit2,math.rad(degree)/2) end
 UnitIsFalling = function(unit) return unit and UnitMovementFlags(unit) == wmbapi.GetUnitMovementFlagsTable().Falling end
 UnitMovementFlags = wmbapi.UnitMovementFlags
 UnitBoundingRadius = wmbapi.UnitBoundingRadius

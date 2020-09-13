@@ -247,7 +247,9 @@ Such transition can optionally include a "transitioning path" that leads to the 
 
 ### PATH
 
-`Path` is the virtual unit containing a sequence of [Waypoints](#waypoint). By default, the character runs from the first waypoint to the last where the path is "terminated". The entire navigation logics have been partially discussed among the above sections, but we will summarize them here as below.
+`Path` is the virtual unit containing a sequence of [Waypoints](#waypoint). By default, the character runs from the first waypoint to the last where the path is "terminated". By default, character movement between waypoints or any targets are based on **Navmesh smart navigation**. You can manually disable it by adding `is_direct` [Common Properties](#common-property) or when map packs are not loaded correctly.
+
+The entire navigation logics have been partially discussed among the above sections, but we will summarize them here as below.
 
 - When the Bot is started, the current [Path Group](#path-group) is confirmed according to the "State" configurations on panel.
 - The first `Path` in the current [Path Group](#path-group) is selected as the current one the character runs on.

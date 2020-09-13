@@ -84,7 +84,6 @@ Offsets = {
 }
 
 StopFalling = wmbapi.StopFalling
-FaceDirection = function(a) if wmbapi.GetObject(a) then wmbapi.FaceDirection(GetAnglesBetweenObjects(a,"player"),true) else wmbapi.FaceDirection(a,true) end end
 ObjectTypeFlags = wmbapi.ObjectTypeFlags
 GetObjectWithPointer = wmbapi.GetObject
 ObjectExists = wmbapi.ObjectExists
@@ -174,6 +173,7 @@ ObjectGUID = UnitGUID
 ObjectEntryID = UnitGUID
 ObjectIsType = wmbapi.ObjectIsType
 GetAnglesBetweenObjects = wmbapi.GetAnglesBetweenObjects
+FaceDirection = function(a) if wmbapi.GetObject(a) then wmbapi.FaceDirection(GetAnglesBetweenObjects(a,"player")*2,true) else wmbapi.FaceDirection(a,true) end end
 ObjectIsBehind = wmbapi.ObjectIsBehind
 ObjectDescriptor = wmbapi.ObjectDescriptor
 ObjectTypeFlags = wmbapi.ObjectTypeFlags

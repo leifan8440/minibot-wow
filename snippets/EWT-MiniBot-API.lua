@@ -84,40 +84,24 @@ Offsets = {
 }
 
 StopFalling = wmbapi.StopFalling
-FaceDirection = wmbapi.FaceDirection
 ObjectTypeFlags = wmbapi.ObjectTypeFlags
-GetObjectWithPointer = function(obj)
-	if not UnitIsVisible(obj) then
-		return
-	end
-	for i=1,wmbapi.GetObjectCount() do
-		local pointer = wmbapi.GetObjectWithIndex(i)
-		if UnitIsVisible(pointer) and UnitIsUnit(pointer,obj) then
-			return pointer
-		end	
-	end
-end
+GetObjectWithPointer = wmbapi.GetObject
 ObjectExists = wmbapi.ObjectExists
 ObjectIsVisible = UnitIsVisible
 ObjectPosition = wmbapi.ObjectPosition
 ObjectFacing = wmbapi.ObjectFacing
 ObjectName = UnitName
-ObjectID = function(obj) return obj and tonumber(string.match(UnitGUID(obj), "-(%d+)-%x+$"), 10) end
+ObjectID = wmbapi.ObjectId
 ObjectIsUnit = function(obj) return obj and ObjectIsType(obj,ObjectTypes.Unit) end
 ObjectIsPlayer = function(obj) return obj and ObjectIsType(obj,ObjectTypes.Player) end
 ObjectIsGameObject = function(obj) return obj and ObjectIsType(obj,ObjectTypes.GameObject) end
 ObjectIsAreaTrigger = function(obj) return obj and ObjectIsType(obj,ObjectTypes.AreaTrigger) end
-GetDistanceBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2) return math.sqrt(math.pow(X2 - X1, 2) + math.pow(Y2 - Y1, 2) + math.pow(Z2 - Z1, 2)) end
+GetDistanceBetweenPositions = wmbapi.GetDistanceBetweenPositions
 GetDistanceBetweenObjects = wmbapi.GetDistanceBetweenObjects
-GetPositionBetweenObjects = function(obj1,obj2,dist) 
-	local X1,Y1,Z1 = ObjectPosition(obj1)
-	local X2,Y2,Z2 = ObjectPosition(obj2)
-	local AngleXY, AngleXYZ = math.atan2(Y2 - Y1, X2 - X1) % (math.pi * 2), math.atan((Z1 - Z2) / math.sqrt(math.pow(X1 - X2, 2) + math.pow(Y1 - Y2, 2))) % math.pi
-	return math.cos(AngleXY) * dist + X1, math.sin(AngleXY) * dist + Y1, math.sin(AngleXYZ) * dist + Z1
-end
-GetPositionFromPosition = function(X, Y, Z, dist, angle) return math.cos(angle) * dist + X, math.sin(angle) * dist + Y, math.sin(0) * dist + Z end
+GetPositionBetweenObjects = wmbapi.GetPositionBetweenObjects
+GetPositionFromPosition = wmbapi.GetPositionFromPosition
 GetAnglesBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2) return math.atan2(Y2 - Y1, X2 - X1) % (math.pi * 2), math.atan((Z1 - Z2) / math.sqrt(math.pow(X1 - X2, 2) + math.pow(Y1 - Y2, 2))) % math.pi end
-GetPositionBetweenPositions = function(X1, Y1, Z1, X2, Y2, Z2, DistanceFromPosition1) local AngleXY, AngleXYZ = GetAnglesBetweenPositions(X1, Y1, Z1, X2, Y2, Z2) return GetPositionFromPosition(X1, Y1, Z1, DistanceFromPosition1, AngleXY, AngleXYZ) end
+GetPositionBetweenPositions = wmbapi.GetPositionBetweenPositions
 ObjectIsFacing = wmbapi.ObjectIsFacing
 ObjectInteract = InteractUnit
 GetObjectCount = wmbapi.GetObjectCount
@@ -126,23 +110,14 @@ GetObjectWithGUID = wmbapi.GetObjectWithGUID
 UnitBoundingRadius = wmbapi.UnitBoundingRadius
 UnitCombatReach = wmbapi.UnitCombatReach
 UnitTarget = wmbapi.UnitTarget
-UnitCastID = function(unit) return select(7,GetSpellInfo(UnitCastingInfo(unit))), select(7,GetSpellInfo(UnitChannelInfo(unit))), wmbapi.UnitCastingTarget, wmbapi.UnitCastingTarget end
+UnitCastID = function(unit) return select(7,GetSpellInfo(UnitCastingInfo(unit))), select(7,GetSpellInfo(UnitChannelInfo(unit))), wmbapi.UnitCastingTarget(unit), wmbapi.UnitCastingTarget(unit) end
 TraceLine = wmbapi.TraceLine
 GetCameraPosition = wmbapi.GetCameraPosition
 CancelPendingSpell = wmbapi.CancelPendingSpell
 ClickPosition = wmbapi.ClickPosition
 IsAoEPending = wmbapi.IsAoEPending
-GetTargetingSpell = function()
-	while true do
-		local spellName,_,_,_,_,_,spellID = GetSpellInfo(i,"spell")
-		if not spellName then
-			break
-		elseif IsCurrentSpell(i,"spell") then
-			return spellID
-		end
-	end
-end
-WorldToScreen = wmbapi.WorldToScreen
+GetTargetingSpell = function() return end
+WorldToScreen = function(...) return select(2,wmbapi.WorldToScreen(...)) end
 ScreenToWorld = wmbapi.ScreenToWorld
 GetDirectoryFiles = wmbapi.GetDirectoryFiles
 ReadFile = wmbapi.ReadFile
@@ -198,12 +173,13 @@ ObjectGUID = UnitGUID
 ObjectEntryID = UnitGUID
 ObjectIsType = wmbapi.ObjectIsType
 GetAnglesBetweenObjects = wmbapi.GetAnglesBetweenObjects
+FaceDirection = function(a) if wmbapi.GetObject(a) then wmbapi.FaceDirection(GetAnglesBetweenObjects(a,"player")*2,true) else wmbapi.FaceDirection(a,true) end end
 ObjectIsBehind = wmbapi.ObjectIsBehind
 ObjectDescriptor = wmbapi.ObjectDescriptor
 ObjectTypeFlags = wmbapi.ObjectTypeFlags
 ObjectField = wmbapi.ObjectField
 GetActivePlayer = function() return "player" end
-UnitIsFacing = ObjectIsFacing
+UnitIsFacing = function(unit1,unit2,degree) return ObjectIsFacing(unit1,unit2,math.rad(degree)/2) end
 UnitIsFalling = function(unit) return unit and UnitMovementFlags(unit) == wmbapi.GetUnitMovementFlagsTable().Falling end
 UnitMovementFlags = wmbapi.UnitMovementFlags
 UnitBoundingRadius = wmbapi.UnitBoundingRadius

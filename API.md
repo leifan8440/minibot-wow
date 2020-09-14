@@ -424,6 +424,8 @@ Gets the count of auras on a specific unit, optionally filtered by spell ID. You
 
 Gets the info of a specific aura, saved by the most recent call to `GetAuraCount()`. If "detailed" is true, the return values will be the same as the BLZ API [UnitAura](https://wow.gamepedia.com/API_UnitAura). If "detailed" is false, the return value will be only the aura spell ID with a bit better performance.
 
+Due to technical difficulties, we only make partial results available in Classic version, which include `_, _, count, _, duration, expirationTime, source, _, _, spellId, ...` ONLY. But in Retail, all are just fine so don't worry.
+
 ```lua
 -- index (number): The index of the aura.
 -- detailed (boolean): Whether to get the details for the aura.

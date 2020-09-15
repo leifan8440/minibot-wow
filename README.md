@@ -794,6 +794,11 @@ MiniBot also allows you to create "framework-independent" projects which can be 
 
 1. The project is loaded in both Login screen and World.
 2. The project is able to be encrypted by `MiniBot CLI`, to take the advantage of source code protection and authorization controls.
+3. Each project script file (*.lua) get two file arguments passed in. One is a unique copy of "wmbapi" table while the other one is a unique table containing unhooked WoW API (added manually). So it is better to do the following on top of each project script file.
+```lua
+local wmbapi, wowapi = ...;
+-- You can rest assured that the API functions within both tables are not hooked/tampered.
+```
 
 You need to manually create and edit all source code files in the project folder, including a different syntax of "project.json" as the Lua manifest file along with the Lua files to be loaded. A simple relogger project is given [here](https://github.com/pierre-picard/minibot-wow/tree/master/examples/relogger) as an example.
 

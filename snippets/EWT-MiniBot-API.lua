@@ -182,6 +182,7 @@ ObjectPointer = wmbapi.GetObject
 UnitCreatureTypeID = wmbapi.UnitCreatureTypeId
 AesEncrypt = wmbapi.AesEncrypt
 AesDecrypt = wmbapi.AesDecrypt
+RunScript = function(...) wmbapi.RunScript("",...) end
 ObjectRawType = function(obj)
 	local result = 0
 	local type_flags = ObjectTypeFlags(obj)
@@ -650,9 +651,6 @@ offset = GetMemoryOffset(module, address)
 -- module (string): The name of the memory module. nil for "Wow.exe" aka the main module.
 -- address (number): The absolute memory address.
 -- offset (number): The result offset. nil if the memory address is not found.
-
-RunScript(name, script)
---Runs a Lua script with a name by engine.
 
 
 --New API

@@ -833,9 +833,14 @@ Gets a specific area trigger by its index in the saved memory objects from the p
 
 ## In-World (Spell)
 
-- `isOrNot = IsAoEPending()`
+- `false | spellId = IsAoEPending()`
 
 Checks if there is a pending spell on the cursor.
+
+```lua
+false (boolean): There is no cursor spell pending.
+spellId (number): The ID of the spell pending on cursor.
+```
 
 - `CancelPendingSpell()`
 

@@ -510,7 +510,7 @@ Gets the map information about the current location.
 
 - `success = LoadMap(mapId)`
 
-Loads a navigation map.
+Loads a navigation map. Notice that map files must be placed correctly before loading.
 
 - `success = UnloadMap(mapId)`
 
@@ -522,7 +522,7 @@ Checks if a navigation map is loaded.
 
 - `path = FindPath(mapId, x1, y1, z1, x2, y2, z2[, ignoreWater = true, waypointCountMax = 1024])`
 
-Calculates a path to navigate from one position to another.
+Calculates a path to navigate from one position to another. Notice that the mapId must be loaded beforehand for the calculation to work properly.
 
 ```lua
 -- mapId (number): The map ID.

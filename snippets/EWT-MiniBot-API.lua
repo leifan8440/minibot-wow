@@ -97,8 +97,14 @@ CancelPendingSpell = wmbapi.CancelPendingSpell
 ClickPosition = wmbapi.ClickPosition
 IsAoEPending = wmbapi.IsAoEPending
 GetTargetingSpell = wmbapi.IsAoEPending
-WorldToScreen = function(...) return select(2,wmbapi.WorldToScreen(...)) end
-ScreenToWorld = wmbapi.ScreenToWorld
+WorldToScreen = function(...) 
+	local x, y = select(2,wmbapi.WorldToScreen(...))
+	return x * 1365, y * 768
+WorldToScreenRaw = function(...)
+	local x, y = select(2,wmbapi.WorldToScreen(...))
+	return x, 1-y
+end
+ScreenToWorld = function(X, Y) return wmbapi.ScreenToWorld(X / 1365, Y / 768) end
 GetDirectoryFiles = wmbapi.GetDirectoryFiles
 ReadFile = wmbapi.ReadFile
 WriteFile = wmbapi.WriteFile
@@ -122,7 +128,7 @@ end
 SendHTTPRequest = wmbapi.SendHttpRequest
 GetKeyState = wmbapi.GetKeyState
 GetWoWWindow = function()
-	return GetScreenWidth(), GetScreenHeight()
+	return GetScreenWidth() * 1.2, GetScreenHeight() * 1.2
 end
 StopMoving = function()
 	MoveAndSteerStop()
@@ -135,7 +141,7 @@ StopMoving = function()
 	TurnLeftStop()
 	TurnOrActionStop()
 	TurnRightStop()
-	if IsMoving() then
+	if GetUnitSpeed("player") > 0 then
 		MoveForwardStart()
 		MoveForwardStop()
 	end
@@ -165,7 +171,7 @@ UnitMovementFlags = wmbapi.UnitMovementFlags
 UnitBoundingRadius = wmbapi.UnitBoundingRadius
 UnitCombatReach = wmbapi.UnitCombatReach
 UnitFlags = wmbapi.UnitFlags
-PlayerFlags = function() wmbapi.UnitFlags("player") end
+PlayerFlags = function() return wmbapi.UnitFlags("player") end
 ObjectCreator = wmbapi.UnitCreator
 UnitCanBeLooted = wmbapi.UnitIsLootable
 UnitCanBeSkinned = wmbapi.UnitIsSkinnable
@@ -183,6 +189,32 @@ UnitCreatureTypeID = wmbapi.UnitCreatureTypeId
 AesEncrypt = wmbapi.AesEncrypt
 AesDecrypt = wmbapi.AesDecrypt
 RunScript = function(...) wmbapi.RunScript("",...) end
+GetMousePosition = function() 
+	local X, Y = GetCursorPosition()		
+	return GetScreenWidth() * 1.2 * X / 1365, GetScreenHeight() * 1.2 * Y / 768
+end
+AddLuaString = function(String, Name) return RunScript(Name, String) end
+if LibDraw then
+	SetDrawColor = LibDraw.SetColor
+	Draw2DLine = LibDraw.Draw2DLine
+	Draw2DText = function(textX, textY, text)
+		local F = tremove(LibDraw.fontstrings) or LibDraw.canvas:CreateFontString(nil, "BACKGROUND")
+		F:SetFontObject("GameFontNormal")
+		F:SetText(text)
+		F:SetTextColor(LibDraw.line.r, LibDraw.line.g, LibDraw.line.b, LibDraw.line.a)
+		if p then
+			local width = F:GetStringWidth() - 4
+			local offsetX = width*0.5
+			local offsetY = F:GetStringHeight() + 3.5
+			local pwidth = width*p*0.01
+			FHAugment.drawLine(textX-offsetX, textY-offsetY, (textX+offsetX), textY-offsetY, 4, r, g, b, 0.25)
+			FHAugment.drawLine(textX-offsetX, textY-offsetY, (textX+offsetX)-(width-pwidth), textY-offsetY, 4, r, g, b, 1)
+		end
+		F:SetPoint("TOPLEFT", UIParent, "TOPLEFT", textX-(F:GetStringWidth()*0.5), textY)
+		F:Show()
+		tinsert(LibDraw.fontstrings_used, F) 
+	end
+end
 ObjectRawType = function(obj)
 	local result = 0
 	local type_flags = ObjectTypeFlags(obj)
@@ -558,16 +590,13 @@ SetVisibleItem = nil
 SetVisibleEnchant = nil
 UnitUpdateModel = nil
 GetLastClickInfo = nil
-WorldToScreenRaw = nil 
 WorldPreload = nil
 IsInFront = nil
-GetMousePosition = nil
 GetAuctionTimers = nil
 IsHackEnabled = nil
 SetHackEnabled = nil
 LoadScript = nil
 GetScriptName = nil
-AddLuaString = nil
 RemoveLuaString = nil
 RegisterLuaFunction = nil
 AddPacketCallback = nil
@@ -595,9 +624,6 @@ UnloadEWT = nil
 RsaGetPubKey = nil
 RsaEncrypt = nil
 HashString = nil
-Draw2DLine = nil
-SetDrawColor = nil
-Draw2DText = nil
 
 
 --Modified API

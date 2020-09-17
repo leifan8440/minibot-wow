@@ -188,7 +188,6 @@ ObjectPointer = wmbapi.GetObject
 UnitCreatureTypeID = wmbapi.UnitCreatureTypeId
 AesEncrypt = wmbapi.AesEncrypt
 AesDecrypt = wmbapi.AesDecrypt
-RunScript = function(...) wmbapi.RunScript("",...) end
 GetMousePosition = function() 
 	local X, Y = GetCursorPosition()		
 	return GetScreenWidth() * 1.2 * X / 1365, GetScreenHeight() * 1.2 * Y / 768

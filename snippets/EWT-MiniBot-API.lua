@@ -102,6 +102,7 @@ WorldToScreen = function(...)
 	local sx = GetScreenWidth() * scale
 	local sy = GetScreenHeight() * scale
 	return x * sx, y * sy
+end
 WorldToScreenRaw = function(...)
 	local x, y = select(2,wmbapi.WorldToScreen(...))
 	return x, 1-y
@@ -110,7 +111,7 @@ ScreenToWorld = function(X, Y)
 	local scale = UIParent:GetEffectiveScale()
 	local sx = GetScreenWidth() * scale
 	local sy = GetScreenHeight() * scale
-	return wmbapi.ScreenToWorld(cx / X, cy / Y)
+	return wmbapi.ScreenToWorld(X / sx, Y / sy)
 end
 GetDirectoryFiles = wmbapi.GetDirectoryFiles
 ReadFile = wmbapi.ReadFile
@@ -193,6 +194,13 @@ UnitCreatureTypeID = wmbapi.UnitCreatureTypeId
 AesEncrypt = wmbapi.AesEncrypt
 AesDecrypt = wmbapi.AesDecrypt
 AddLuaString = function(String, Name) return RunScript(Name, String) end
+GetWoWWindow = GetPhysicalScreenSize
+GetMousePosition = function()
+	local def_x, def_y, real_x, real_y = 768*(GetScreenWidth()/GetScreenHeight()), 768, GetPhysicalScreenSize()
+	local cur_x, cur_y = GetCursorPosition()
+	local res_x, res_y = cur_x*(real_x/def_x), real_y-cur_y*(real_y/def_y)
+	return res_x, res_y, res_x, res_y
+end
 if LibDraw then
 	SetDrawColor = LibDraw.SetColor
 	Draw2DLine = LibDraw.Draw2DLine
@@ -623,8 +631,6 @@ UnloadEWT = nil
 RsaGetPubKey = nil
 RsaEncrypt = nil
 HashString = nil
-GetMousePosition = nil
-GetWoWWindow = nil
 
 
 --Modified API

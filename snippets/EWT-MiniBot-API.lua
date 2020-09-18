@@ -98,13 +98,20 @@ ClickPosition = wmbapi.ClickPosition
 IsAoEPending = wmbapi.IsAoEPending
 GetTargetingSpell = wmbapi.IsAoEPending
 WorldToScreen = function(...) 
-	local x, y = select(2,wmbapi.WorldToScreen(...))
-	return x * 1365, y * 768
+	local scale, x, y = UIParent:GetEffectiveScale(), select(2,wmbapi.WorldToScreen(...))
+	local sx = GetScreenWidth() * scale
+	local sy = GetScreenHeight() * scale
+	return x * sx, y * sy
 WorldToScreenRaw = function(...)
 	local x, y = select(2,wmbapi.WorldToScreen(...))
 	return x, 1-y
 end
-ScreenToWorld = function(X, Y) return wmbapi.ScreenToWorld(X / 1365, Y / 768) end
+ScreenToWorld = function(X, Y) 
+	local scale = UIParent:GetEffectiveScale()
+	local sx = GetScreenWidth() * scale
+	local sy = GetScreenHeight() * scale
+	return wmbapi.ScreenToWorld(cx / X, cy / Y)
+end
 GetDirectoryFiles = wmbapi.GetDirectoryFiles
 ReadFile = wmbapi.ReadFile
 WriteFile = wmbapi.WriteFile
@@ -127,9 +134,6 @@ AddFrameCallback = function(frame)
 end
 SendHTTPRequest = wmbapi.SendHttpRequest
 GetKeyState = wmbapi.GetKeyState
-GetWoWWindow = function()
-	return GetScreenWidth() * 1.2, GetScreenHeight() * 1.2
-end
 StopMoving = function()
 	MoveAndSteerStop()
 	MoveForwardStop()
@@ -188,10 +192,6 @@ ObjectPointer = wmbapi.GetObject
 UnitCreatureTypeID = wmbapi.UnitCreatureTypeId
 AesEncrypt = wmbapi.AesEncrypt
 AesDecrypt = wmbapi.AesDecrypt
-GetMousePosition = function() 
-	local X, Y = GetCursorPosition()		
-	return GetScreenWidth() * 1.2 * X / 1365, GetScreenHeight() * 1.2 * Y / 768
-end
 AddLuaString = function(String, Name) return RunScript(Name, String) end
 if LibDraw then
 	SetDrawColor = LibDraw.SetColor
@@ -623,6 +623,8 @@ UnloadEWT = nil
 RsaGetPubKey = nil
 RsaEncrypt = nil
 HashString = nil
+GetMousePosition = nil
+GetWoWWindow = nil
 
 
 --Modified API

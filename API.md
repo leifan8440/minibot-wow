@@ -868,10 +868,47 @@ Gets the position of the camera.
 
 - `isOnScreen, x, y = WorldToScreen(object | x, y, z)`
 
-Projects a world position to the screen NDC position.
+Projects a world position to the screen NDC position, ranging between 0.0 to 1.0 with coord origin at the bottom-left of the window client area.
+
+This is useful to display some "overlay" WoW frame objects for the world objects. Considering the UI scaling, an example to create a text label for an world object is given below.
+
+```lua
+function create_object_label(object)
+  local is_on_screen, x, y = WorldToScreen(object);
+  if (is_on_screen) then
+    local screen_physical_width, screen_physical_height = GetPhysicalScreenSize();
+    local scale_x = 768 / GetScreenHeight() * GetScreenWidth() / (screen_physical_width * UIParent:GetEffectiveScale());
+    local scale_y = 768 / (screen_physical_height * UIParent:GetEffectiveScale());
+    label = CreateFrame("Frame", nil, esp_background_frame);
+    label_font_string = label:CreateFontString(nil, "BORDER");
+    label_font_string:SetPoint("TOPLEFT");
+    label_font_string:SetJustifyH("CENTER");
+    label_font_string:SetText("some words");
+    label:SetWidth(label_font_string:GetStringWidth());
+    label:SetHeight(label_font_string:GetStringHeight());
+    label:SetPoint("BOTTOMLEFT", x * screen_width * scale_x, y * screen_height * scale_y);
+  end
+end
+```
 
 - `x, y, z[, object] = ScreenToWorld(x, y)`
 
-Projects a screen NDC position to a world object or a terrain position.
+Projects a screen NDC position (ranging between 0.0 to 1.0 with coord origin at the bottom-left of the window client area) to a world object or a terrain position.
+
+This is useful to calculate a world position for the cursor position. Combined with the BLZ API "GetCursorPosition()", an example to do this is given below with UI scaling involved.
+
+```lua
+function get_cursor_world_position()
+  local scale, cursor_x, cursor_y = UIParent:GetEffectiveScale(), GetCursorPosition();
+  local screen_width = GetScreenWidth() * scale;
+  local screen_height = GetScreenHeight() * scale;
+  x, y, z = ScreenToWorld(cursor_x / screen_width, cursor_y / screen_height);
+  if (x) then
+      return {x, y, z};
+  else
+      return nil;
+  end
+end
+```
 
 [Back to Top](#custom-api)

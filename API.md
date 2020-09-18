@@ -886,7 +886,7 @@ function create_object_label(object)
     label_font_string:SetText("some words");
     label:SetWidth(label_font_string:GetStringWidth());
     label:SetHeight(label_font_string:GetStringHeight());
-    label:SetPoint("BOTTOMLEFT", x * screen_width * scale_x, y * screen_height * scale_y);
+    label:SetPoint("BOTTOMLEFT", x * screen_physical_width * scale_x, y * screen_physical_height * scale_y);
   end
 end
 ```

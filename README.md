@@ -171,9 +171,9 @@ If you wish to sell your project work or even want to white label the product to
 
 - Download the latest map pack (`MiniBot.Maps.zip`) in [Releases](https://github.com/pierre-picard/minibot-wow/releases/latest) and extract it into the main folder of **MiniBot** (`/maps` subfolder).
 
-- Enter command `MiniBot.Cli.exe -h` to view all verbs of MiniBot command line.
+- Enter command `MiniBot.WoW.Cli.exe -h` to view all verbs of MiniBot command line.
 
-- You can use command `MiniBot.Cli.exe inject` to launch the system in one go. The CLI program will indicate the injection result via process exit code (0 for success and non-0s for error codes). Examples are given below.
+- You can use command `MiniBot.WoW.Cli.exe inject` to launch the system in one go. The CLI program will indicate the injection result via process exit code (0 for success and non-0s for error codes). Examples are given below.
 
 ```bat
 REM Show detailed command help.
@@ -186,7 +186,7 @@ REM Launch WoW (classic) w/o AddOns Framework, and start WoW afterwards.
 MiniBot.WoW.Cli.exe inject -u "your@email.com" -p "yourPassword" -g "C:\Games\World of Warcraft\_classic_\WowClassic.exe" -o -s "1" -l
 ```
 
-- You can use command `MiniBot.Cli.exe encrypt` to encrypt the source code of project with built-in authorizations and dispatch the protected copy to your end users. 
+- You can use command `MiniBot.WoW.Cli.exe encrypt` to encrypt the source code of project with built-in authorizations and dispatch the protected copy to your end users. 
   - You may additionally use a [auth.json](cli/auth.json) definition file that contains the authorization info with the optional [-a path] command
   - Examples are given below.
 
@@ -195,10 +195,10 @@ REM Show detailed command help.
 MiniBot.WoW.Cli.exe encrypt -h
 
 REM Encrypt "Simple Grind" project.
-MiniBot.WoW.Cli.exe encrypt -u "your@email.com" -p "yourPassword" -g "C:\Games\World of Warcraft\_classic_\WowClassic.exe" -s "C:\MiniBot\scripts\simple-grind" -a "C:\MiniBot\auth.json" -t "C:\MiniBot\scripts
+MiniBot.WoW.Cli.exe encrypt -u "your@email.com" -p "yourPassword" -g "C:\Games\World of Warcraft\_classic_\WowClassic.exe" -s "C:\MiniBot\scripts\simple-grind" -a "C:\MiniBot\auth.json" -t "C:\MiniBot\scripts"
 ```
 
-- You can use command `MiniBot.Cli.exe oem` to build an OEM file (`product.dat`) to replace the original file.
+- You can use command `MiniBot.WoW.Cli.exe oem` to build an OEM file (`product.dat`) to replace the original file.
   - Such command requires Dealer access granted to your MiniBot account. Contact us for access request.
   - Such command needs an [oem.json](cli/oem.json) definition file that describes the OEM info.
 

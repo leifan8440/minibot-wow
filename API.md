@@ -225,6 +225,10 @@ Gets the pressed state of a specific key.
 
 Plays a specific sound WAV/MP3 file once.
 
+- `function | error = LoadScript(name, script)`
+
+Loads a Lua script with a name by engine into a function.
+
 - `RunScript(name, script)`
 
 Runs a Lua script with a name by engine.

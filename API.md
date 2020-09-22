@@ -512,6 +512,10 @@ Gets the info of a specific missile.
 
 Gets the map information about the current location.
 
+- `isOrNot = MapExists(mapId)`
+
+Checks whether the navigation files for a specific map exists.
+
 - `success = LoadMap(mapId)`
 
 Loads a navigation map. Notice that map files must be placed correctly before loading.
